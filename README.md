@@ -54,7 +54,9 @@ Die Spielenden sollen als Konsequenz für ein korrektes/inkorrektes Zeitmanageme
 ## Forschungsstand
 In der Forschung wird im Allgemeinen angenommen, dass Prokrastination zu einer verringerten Lern-Leistung, gesundheitlichen Defiziten und einem ungesunderen Lebensstil führt. (vgl. Jochmann et al., 2024: 11) 
 Einige Modelle legen hierbei einen Zusammenhang zwischen Prokrastination, den daraus resultierenden Stress, und Krankheit nahe. (vgl. ebd.: 3)
+
 Die genauen Prozesse, welche zu einer Minderung der negativen Konsequenzen führen, sind noch nicht genau erforscht. (vgl. ebd.) Einige Studien fanden jedoch eine Verbesserung im Umgang der Studenten mit Prokrastination, bei Verwendung von diversen Lernstrategien. (vgl. Pareira et al., 2024: 7; vgl. Khan et al., 2025: 1)
+
 Einige Studien weisen auf ein erhöhtes auftreten von Prokrastination unter jungen Erwachsenen, insbesondere Studenten, auf. (vgl. Khan et al., 2025: 6)
 Zu den häufigsten Aufgaben, welche prokrastiniert wurden, zählten akademische oder Lern-Aufgaben, sowie Haushalts-, Gesundheits-Aktivitäten und private Aufgaben. (vgl. ebd.: 3)
 
