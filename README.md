@@ -72,6 +72,7 @@ Zu den häufigsten Aufgaben, welche prokrastiniert wurden, zählten akademische 
 
 ## Projekt-Umsetzung
 Das Spiel wird zweidimensional gestaltet und nutzt eine Draufsicht in Pixelgrafik, vergleichbar zu Spielen wie „The Legend of Zelda: A Link to the Past“ oder „Pokémon Rote Edition“. Beispiele hierzu sind in dem Wiki des Projekts, unter „Beispiele: Projekt-Umsetzung“, zu finden.
+
 **Entwicklungsumgebung:**
 Das Projekt wird mittels der „Godot-Engine“ umgesetzt. Gründe hierfür sind:
 1.	Das Team hat bereits kleiner Projekte mittels der Godot-Engine umgesetzt.
