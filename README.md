@@ -2,7 +2,7 @@
 Robin Schlegel, Ben Pritzkau
 
 ## Projektübersicht
-In Folge dieses Projekts, soll ein Spiel-System entwickelt werden, welches den Prozess der Prokrastination, die daraus entstehende Problemlage und, wenn möglich, potenzielle Lösungsansätze illustriert. Dabei soll als Grundlage Alltagsprozess verwendet werden, in welchem Pflicht und Ablenkungen vorhanden sind.
+In Folge dieses Projekts, soll ein Spiel-System entwickelt werden, welches den Prozess der Prokrastination, die daraus entstehende Problemlage und, wenn möglich, potenzielle Lösungsansätze illustriert. Dabei soll als Grundlage der Alltagsprozess eines Studenten verwendet werden, in welchem Pflicht und Ablenkungen vorhanden sind.
 
 ## Problemstellung
 Viele Menschen prokrastinieren in ihrem Alltag und verschieben wichtige Aufgaben in die Zukunft, trotz der Tatsache, dass sie mit negativen Konsequenzen rechnen. Dieser Prozess ist für Außenstehende, und sogar betroffene, oft nicht nachvollziehbar, was die Lösung des Problems erschwert und somit für Frustration sorgt.
@@ -26,14 +26,14 @@ Der Nutzer wird ein Zeitlimit haben, innerhalb welchem es gilt, die Aufgaben abz
 Zur vereinfachten Beschreibung des Projekts, wird hier von einem Parameter Zeit ausgegangen, welcher durch Aufgaben und Aktivitäten verrignert wird.
 Ein genaues Zeitmaß, wie zum Beispiel "48 Stunden", wird im Laufe des Projekts festgesetzt werden.
 
-#### Stress-/Gesundheits-Zuständ
-Der Spieler wird über zwei sichtbare Parameter verfügen, welche jeweils den Stress- und Gesundheits-Zustand des Spielercharackters darstellen. Diese Parametere beeinflussen sich gegenseitung und stehen in Wechselwirkung zu den Aufgaben und Aktivitäten. Sie sollen sich in ihrer Umsetzung nach dem Prokrastionations-Gesundheitsmodell von Sirois richten. 
+#### Stress-/Gesundheitszustand
+Der Spieler wird über zwei sichtbare Parameter verfügen, welche jeweils den Stress- und Gesundheitszustand des Spieler Characters darstellen. Diese Parameter beeinflussen sich gegenseitung und stehen in Wechselwirkung zu den Aufgaben und Aktivitäten. Sie sollen sich in ihrer Umsetzung nach dem Prokrastionations-Gesundheitsmodell von Sirois richten. 
 
-Gesundheizustand:
+Gesundheitszustand:
 Der Spieler wird den sichtbaren Parameter Gesundheitszustand besitzen. Dieser Zustand beeinflusst den Stresszustand und wird wiederum von diesem beeinflusst. Ein hoher Stresszustand, so wie ungesundes Verhalten, erniedrigt den Gesundheitszustand. Ein zu niedriger Gesundheitszustand erschwert es dem Spieler die Aufgaben zu erfüllen.
 
 Stresszustand:
-Der Spieler wird den sichtbaren Parameter Stresszustand besitzen. Das Näherkommen der Deadline mit unerfüllten Aufgaben, ungesundes Verhalten so wie nicht zu Ruhe kommen und sich kein Pausen nehmen erhöht den Stresszustand. Ein niedriger Gesundheitszustand, erhöht den Stresswert. Ein hoher Stresszustand erschwert es dem Spieler Aufgaben zu erfüllen.
+Der Spieler wird den sichtbaren Parameter Stresszustand besitzen. Das Näherkommen der Deadline mit unerfüllten Aufgaben, ungesundes Verhalten, sowie nicht zu Ruhe kommen und sich keine Pausen nehmen erhöht den Stresszustand. Ein niedriger Gesundheitszustand, erhöht den Stresswert. Ein hoher Stresszustand erschwert es dem Spieler Aufgaben zu erfüllen.
 
 #### Aufgaben:
 Aufgaben sollen als unattraktive Verpflichtung im Handlungsfokus stehen. Aufgaben verbrauchen Zeit und sind nehmen somit Einfluss auf das Zeitmanagement.
