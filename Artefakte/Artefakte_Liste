@@ -1,3 +1,0 @@
-Eine Auflistung der aktuellen Artefakte mit Beschreibung:
-1. Domänenmodell - modelliert den Relevanten Teil der Domäne. (V.1)
-2. Interatkionsmodell - modelliert die Interaktions von Zuständen und Systemen, welche innerhalb des Programms stattfinden. {} für Werte, die unter ständiger Veränderung stehen (wobei {s} = Stress, {z} = Zeit, {g} = Gesundheit). [] Für Werte, welche vom Nutzer eingegeben werden.
