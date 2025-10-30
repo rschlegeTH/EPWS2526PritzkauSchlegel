@@ -30,11 +30,17 @@ Da im Projekt mit vielen verschiedenen Ressource-Parametern gearbeitet wird, kö
 Um dies zu verhindern, wird im Entwicklungsprozess mit Nutzern und der Think-Aloud Methode gearbeitet werden, da so Unklarheiten frühzeitig erkannt und behandelt werden können.
 
 ## R7
+Da es in der Projektentwicklung aus Zeitgründen zu einem Nicht-Entwickeln oder zu Fehlern in der implementierung der Tool-Tips kommen könnte, könnten die Spieler keine Erklärung der Mechaniken und Ressourcen im Spiel erhalten, 
+was zu Unklarheiten zu der Funktionsweise des Spielprinzips führen könnte.
+
+Um dieses Risiko zu mindern, werden die Mechaniken auch im README detailliert erklärt werden.
+
+## R8
 Da das Projekt auf verschiedenen Geräten lauffähig sein muss, welche unterschiedliche Bildschirmgrößen oder andere Voraussetzungen haben, könnte es dazu kommen, dass es zu technischen Kompatibilitätsproblemen kommt und möglicherweise nicht ausführbar ist. 
 
 Um dies zu verhindern ist es wichtig das System frühzeitig auf verschiedenen Geräten zu testen und responsive Layouts zu nutzen welche sich zum Beispiel auf verschiedene Bildschirmgrößen anpassen können.
 
-## R8
+## R9
 Da es im Projektteam zu einer unregelmäßigen Datenspeicherung oder einem Geräteausfall kommen kann, könnten wichtige Assets oder Code verloren oder gelöscht werden, was zu einer Verzögerung der Zielerreichung führen könnte. 
 
 Daher muss das Team auf häufige Absicherung der Daten im Git-Repository achten.
