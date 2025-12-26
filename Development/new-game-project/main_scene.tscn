@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmq5qw7b8ovi1"]
+
+[ext_resource type="PackedScene" uid="uid://ddyt5x518ckji" path="res://button.tscn" id="1_0f027"]
+
+[node name="main_scene" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Buttons" type="Node" parent="."]
+
+[node name="Button" parent="Buttons" instance=ExtResource("1_0f027")]
+offset_left = -433.0
+offset_top = -60.0
+offset_right = -260.0
+offset_bottom = 76.0
+
+[node name="Button2" parent="Buttons" instance=ExtResource("1_0f027")]
+offset_left = -177.0
+offset_top = -57.0
+offset_right = -4.0
+offset_bottom = 79.0
+
+[node name="Button3" parent="Buttons" instance=ExtResource("1_0f027")]
+offset_left = 134.0
+offset_top = -51.0
+offset_right = 307.0
+offset_bottom = 85.0
