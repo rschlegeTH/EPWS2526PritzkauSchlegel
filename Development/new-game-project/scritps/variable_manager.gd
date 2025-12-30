@@ -9,8 +9,8 @@ var completion: int = 0 #Arbeitsfortschritt
 var dead: int = 1 #verbleibende Zeit zur deadline
 var deadline: int = 6
 var deadMult: float = 0.5
-
-var zeit: int
+# Zeit muss gezeitet werden
+var zeit: int # muss verbessert werden
 var timeLastSleep: int = 0
 
 var sDiv: int = 100 #standerdDivider
