@@ -51,8 +51,8 @@ func calcProductitvity(stress: float, gesund: float) -> float: # Überarbeiten??
 	var productiv = clampf(gesund - stress*0.5, 0, 100)
 	return productiv
 func workButton ():
-	pass
+	print("work")
 func sleepButton ():
-	pass
+	print("sleep")
 func gameButton ():
-	pass
+	print("game")

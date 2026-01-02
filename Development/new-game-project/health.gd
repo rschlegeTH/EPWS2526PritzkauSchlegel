@@ -7,4 +7,4 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	$".".text = str(temp.gesundheit).pad_decimals(2) + "%"
+	$".".text = str(temp.gesundheit).pad_decimals(2) + "%" # Schreib den wert von gesundheit auf das Lable

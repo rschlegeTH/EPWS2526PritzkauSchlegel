@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmq5qw7b8ovi1"]
+[gd_scene load_steps=10 format=3 uid="uid://dmq5qw7b8ovi1"]
 
 [ext_resource type="Script" uid="uid://5f8rgbug8fqr" path="res://days.gd" id="1_8mm7a"]
 [ext_resource type="PackedScene" uid="uid://001sx3h20shs" path="res://variablen_manager.tscn" id="1_hq1ik"]
+[ext_resource type="Script" uid="uid://d1k61c726l7qn" path="res://work_button.gd" id="2_7ycvg"]
 [ext_resource type="Script" uid="uid://cm85b04uqbmju" path="res://time.gd" id="2_hq1ik"]
 [ext_resource type="Script" uid="uid://bq1yvqe1hlial" path="res://work.gd" id="3_nfk4m"]
+[ext_resource type="Script" uid="uid://deg6qcfxc7e1" path="res://play_button.gd" id="3_wr18j"]
 [ext_resource type="Script" uid="uid://d1bbtegsmion8" path="res://stress.gd" id="4_66tet"]
+[ext_resource type="Script" uid="uid://66broqn01w7x" path="res://sleep_button.gd" id="4_qwutr"]
 [ext_resource type="Script" uid="uid://d24isyeimle14" path="res://health.gd" id="5_7ycvg"]
 
 [node name="main_scene" type="Node2D"]
@@ -16,29 +19,32 @@ unique_name_in_owner = true
 
 [node name="Buttons" type="Node" parent="."]
 
-[node name="Work" type="Button" parent="Buttons"]
+[node name="Work Button" type="Button" parent="Buttons"]
 offset_left = -535.0
 offset_top = 132.0
 offset_right = -281.0
 offset_bottom = 272.0
 theme_override_font_sizes/font_size = 96
 text = "Work"
+script = ExtResource("2_7ycvg")
 
-[node name="Play" type="Button" parent="Buttons"]
+[node name="Play Button" type="Button" parent="Buttons"]
 offset_left = -139.0
 offset_top = 133.0
 offset_right = 115.0
 offset_bottom = 273.0
 theme_override_font_sizes/font_size = 96
 text = "Play"
+script = ExtResource("3_wr18j")
 
-[node name="Sleep" type="Button" parent="Buttons"]
+[node name="Sleep Button" type="Button" parent="Buttons"]
 offset_left = 235.0
 offset_top = 133.0
 offset_right = 489.0
 offset_bottom = 273.0
 theme_override_font_sizes/font_size = 96
 text = "Sleep"
+script = ExtResource("4_qwutr")
 
 [node name="Lables" type="Node" parent="."]
 
@@ -131,3 +137,7 @@ offset_bottom = 94.0
 theme_override_font_sizes/font_size = 64
 text = "0%"
 script = ExtResource("5_7ycvg")
+
+[connection signal="pressed" from="Buttons/Work Button" to="Buttons/Work Button" method="_on_pressed"]
+[connection signal="pressed" from="Buttons/Play Button" to="Buttons/Play Button" method="_on_pressed"]
+[connection signal="pressed" from="Buttons/Sleep Button" to="Buttons/Sleep Button" method="_on_pressed"]
