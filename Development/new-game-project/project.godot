@@ -11,9 +11,11 @@ config_version=5
 [application]
 
 config/name="EP-Game"
+run/main_scene="uid://dmq5qw7b8ovi1"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 
 [rendering]
 
 renderer/rendering_method="mobile"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

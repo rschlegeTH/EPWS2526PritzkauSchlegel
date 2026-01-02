@@ -1,6 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://dmq5qw7b8ovi1"]
-
-[ext_resource type="PackedScene" uid="uid://ddyt5x518ckji" path="res://button.tscn" id="1_0f027"]
+[gd_scene format=3 uid="uid://dmq5qw7b8ovi1"]
 
 [node name="main_scene" type="Node2D"]
 
@@ -8,20 +6,113 @@
 
 [node name="Buttons" type="Node" parent="."]
 
-[node name="Button" parent="Buttons" instance=ExtResource("1_0f027")]
-offset_left = -433.0
-offset_top = -60.0
-offset_right = -260.0
-offset_bottom = 76.0
+[node name="Work" type="Button" parent="Buttons"]
+offset_left = -535.0
+offset_top = 132.0
+offset_right = -281.0
+offset_bottom = 272.0
+theme_override_font_sizes/font_size = 96
+text = "Work"
 
-[node name="Button2" parent="Buttons" instance=ExtResource("1_0f027")]
-offset_left = -177.0
-offset_top = -57.0
-offset_right = -4.0
-offset_bottom = 79.0
+[node name="Play" type="Button" parent="Buttons"]
+offset_left = -139.0
+offset_top = 133.0
+offset_right = 115.0
+offset_bottom = 273.0
+theme_override_font_sizes/font_size = 96
+text = "Play"
 
-[node name="Button3" parent="Buttons" instance=ExtResource("1_0f027")]
-offset_left = 134.0
-offset_top = -51.0
-offset_right = 307.0
-offset_bottom = 85.0
+[node name="Sleep" type="Button" parent="Buttons"]
+offset_left = 235.0
+offset_top = 133.0
+offset_right = 489.0
+offset_bottom = 273.0
+theme_override_font_sizes/font_size = 96
+text = "Sleep"
+
+[node name="Lables" type="Node" parent="."]
+
+[node name="Days till Deadline" type="Label" parent="Lables"]
+offset_left = -551.0
+offset_top = -309.0
+offset_right = 2.0
+offset_bottom = -212.0
+theme_override_font_sizes/font_size = 64
+text = "Days till Deadline:"
+
+[node name="Days" type="Label" parent="Lables/Days till Deadline"]
+layout_mode = 0
+offset_left = 574.0
+offset_top = -1.0
+offset_right = 614.0
+offset_bottom = 87.0
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[node name="current time" type="Label" parent="Lables"]
+offset_left = -551.0
+offset_top = -223.0
+offset_right = 2.0
+offset_bottom = -126.0
+theme_override_font_sizes/font_size = 64
+text = "Current time:"
+
+[node name="Time" type="Label" parent="Lables/current time"]
+layout_mode = 0
+offset_left = 430.0
+offset_top = 2.0
+offset_right = 594.0
+offset_bottom = 90.0
+theme_override_font_sizes/font_size = 64
+text = "00:00"
+
+[node name="Work completed" type="Label" parent="Lables"]
+offset_left = -551.0
+offset_top = -129.0
+offset_right = 2.0
+offset_bottom = -32.0
+theme_override_font_sizes/font_size = 64
+text = "Work completed:"
+
+[node name="Work" type="Label" parent="Lables/Work completed"]
+layout_mode = 0
+offset_left = 540.0
+offset_top = 7.0
+offset_right = 580.0
+offset_bottom = 95.0
+theme_override_font_sizes/font_size = 64
+text = "0%"
+
+[node name="Stress level" type="Label" parent="Lables"]
+offset_left = -551.0
+offset_top = -45.0
+offset_right = 2.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 64
+text = "Stress:"
+
+[node name="Stress" type="Label" parent="Lables/Stress level"]
+layout_mode = 0
+offset_left = 219.0
+offset_top = 5.0
+offset_right = 259.0
+offset_bottom = 93.0
+theme_override_font_sizes/font_size = 64
+text = "0%"
+
+[node name="Health level" type="Label" parent="Lables"]
+offset_left = -551.0
+offset_top = 32.0
+offset_right = 2.0
+offset_bottom = 129.0
+theme_override_font_sizes/font_size = 64
+text = "Health:"
+
+[node name="Health" type="Label" parent="Lables/Health level"]
+layout_mode = 0
+offset_left = 235.0
+offset_top = 6.0
+offset_right = 275.0
+offset_bottom = 94.0
+theme_override_font_sizes/font_size = 64
+text = "0%"
