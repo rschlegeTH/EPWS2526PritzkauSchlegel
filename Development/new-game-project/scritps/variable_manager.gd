@@ -50,3 +50,9 @@ func addCompletion():
 func calcProductitvity(stress: float, gesund: float) -> float: # Überarbeiten???
 	var productiv = clampf(gesund - stress*0.5, 0, 100)
 	return productiv
+func workButton ():
+	pass
+func sleepButton ():
+	pass
+func gameButton ():
+	pass
