@@ -1,6 +1,16 @@
-[gd_scene format=3 uid="uid://dmq5qw7b8ovi1"]
+[gd_scene load_steps=7 format=3 uid="uid://dmq5qw7b8ovi1"]
+
+[ext_resource type="Script" uid="uid://5f8rgbug8fqr" path="res://days.gd" id="1_8mm7a"]
+[ext_resource type="PackedScene" uid="uid://001sx3h20shs" path="res://variablen_manager.tscn" id="1_hq1ik"]
+[ext_resource type="Script" uid="uid://cm85b04uqbmju" path="res://time.gd" id="2_hq1ik"]
+[ext_resource type="Script" uid="uid://bq1yvqe1hlial" path="res://work.gd" id="3_nfk4m"]
+[ext_resource type="Script" uid="uid://d1bbtegsmion8" path="res://stress.gd" id="4_66tet"]
+[ext_resource type="Script" uid="uid://d24isyeimle14" path="res://health.gd" id="5_7ycvg"]
 
 [node name="main_scene" type="Node2D"]
+
+[node name="Variablen-Manager" parent="." instance=ExtResource("1_hq1ik")]
+unique_name_in_owner = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -48,6 +58,7 @@ offset_right = 614.0
 offset_bottom = 87.0
 theme_override_font_sizes/font_size = 64
 text = "0"
+script = ExtResource("1_8mm7a")
 
 [node name="current time" type="Label" parent="Lables"]
 offset_left = -551.0
@@ -65,6 +76,7 @@ offset_right = 594.0
 offset_bottom = 90.0
 theme_override_font_sizes/font_size = 64
 text = "00:00"
+script = ExtResource("2_hq1ik")
 
 [node name="Work completed" type="Label" parent="Lables"]
 offset_left = -551.0
@@ -82,6 +94,7 @@ offset_right = 580.0
 offset_bottom = 95.0
 theme_override_font_sizes/font_size = 64
 text = "0%"
+script = ExtResource("3_nfk4m")
 
 [node name="Stress level" type="Label" parent="Lables"]
 offset_left = -551.0
@@ -99,6 +112,7 @@ offset_right = 259.0
 offset_bottom = 93.0
 theme_override_font_sizes/font_size = 64
 text = "0%"
+script = ExtResource("4_66tet")
 
 [node name="Health level" type="Label" parent="Lables"]
 offset_left = -551.0
@@ -116,3 +130,4 @@ offset_right = 275.0
 offset_bottom = 94.0
 theme_override_font_sizes/font_size = 64
 text = "0%"
+script = ExtResource("5_7ycvg")
