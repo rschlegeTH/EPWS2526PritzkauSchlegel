@@ -64,6 +64,9 @@ func calcElapsedTimeSinceSleep() -> void:
 func resetSleepTimeVariables() -> void:
 	timeOfLastSleep = Time.get_unix_time_from_system() #akutelle Zeit speichern
 	calcElapsedTimeSinceSleep() # elapsedTimeSinceSleep rekalkulieren
-# Wird Jede Sekunde ausgelöst und führt alle Kalkulationen durch
+# Wird Jede Sekunde vom UpdateTimer-Signal ausgelöst und führt alle Kalkulationen durch
 func _on_timer_timeout() -> void:
-	gesundheit = gesundheit - 1 #Testen der Function, sollte bei Ausführen der Szene den Gesundheitswert um 1 senken
+	calcGes()
+	calcStress()
+	calcProductitvity()
+	calcElapsedTimeSinceSleep()
