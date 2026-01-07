@@ -35,9 +35,10 @@ func calcGes() -> void:
 	gesundheit = gesundheit - g_mod
 	
 func calcStress() -> void:
-	var s_mod:float = (-gesundheit)/sDiv + ((-completion+100) * dead)/sDiv #deadline Wert(dead) beobachten
-	s_mod = clampf(s_mod, -1, 1)
-	stress = stress + s_mod
+	var s_mod:float # Stress_Modifikator, also der Wert, um den Stress verändert wird
+	s_mod = (-gesundheit)/sDiv + ((-completion+100) * dead)/sDiv #deadline Wert(dead) beobachten
+	s_mod = clampf(s_mod, -1, 1) # s_mod darf sich nur zwischen -1 bis 1 befinden und wird auf diese Limitiert
+	stress = stress + s_mod # Werte anwenden
 
 func addCompletion() -> void:
 	var minVal = 0
@@ -56,10 +57,13 @@ func sleepButton () -> void:
 	print("sleep")
 func gameButton () -> void:
 	print("game")
-
+# Berechnet den Zeitunterschied zwischen der aktuellen Zeit und timeOfLastSleep und weist diesen elapsedTimeSinceSleep zu.
 func calcElapsedTimeSinceSleep() -> void:
 	elapsedTimeSinceSleep = timeOfLastSleep - Time.get_unix_time_from_system()
-
+# Setzt timeOfLastSleep auf die akutelle Zeit zurück
+func resetSleepTimeVariables() -> void:
+	timeOfLastSleep = Time.get_unix_time_from_system() #akutelle Zeit speichern
+	calcElapsedTimeSinceSleep() # elapsedTimeSinceSleep rekalkulieren
 # Wird Jede Sekunde ausgelöst und führt alle Kalkulationen durch
 func _on_timer_timeout() -> void:
 	gesundheit = gesundheit - 1 #Testen der Function, sollte bei Ausführen der Szene den Gesundheitswert um 1 senken
