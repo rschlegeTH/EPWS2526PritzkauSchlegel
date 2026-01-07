@@ -6,53 +6,60 @@ var stress: float = 0
 var productivity: float = 100 #Produktivität
 
 var completion: int = 0 #Arbeitsfortschritt
-var dead: int = 1 #verbleibende Zeit zur deadline
+# Zeit
+
+# Deadline-Segment der Zeit
+var dead: int = 1 #verbleibende Zeit zur deadline, zählt aufwärts
 var deadline: int = 6
 var deadMult: float = 0.5
 # Zeit muss gezeitet werden
-var zeit: int # muss verbessert werden
-var timeLastSleep: int = 0
 
-var sDiv: int = 100 #standerdDivider
+# Zeit seit Schlaf
+var timeOfLastSleep: float = Time.get_unix_time_from_system() # Standardwerte mit Unix_Time, sollte aber evtl mit engine Time gemacht werden?
+var elapsedTimeSinceSleep: float # Standardwerte
+
+var sDiv: float = 100 #standerdDivider, wird für Beeinflussung der Rechnungeng verwendet und beeinflusst das Kurvenverhalten.
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	calcElapsedTimeSinceSleep()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	
-	
-	pass
-
-func calcGes():
-	var g_mod = 0
-	var erhöhung = 0.1
-	if(timeLastSleep < 60):
+func calcGes() -> void:
+	var g_mod = 0 # Gesundheits_Modifikitor, also der Wert, um den die Gesundheit verändert wird
+	var erhöhung = 0.1 # Wachtum der Kurve
+	if(timeOfLastSleep < 60):
 		g_mod = tanh((stress)/sDiv)
 	else:
-		g_mod = tanh(stress)/sDiv + tanh((timeLastSleep-60)* erhöhung)
+		g_mod = tanh(stress)/sDiv + tanh((timeOfLastSleep-60)* erhöhung)
 	g_mod = clampf(g_mod, 0, 1) #Ist 1 ein guter Wert für einen Clamp?
 	gesundheit = gesundheit - g_mod
 	
-func calcStress():
-	var s_mod = (-gesundheit)/sDiv + ((-completion+100) * dead)/sDiv #deadline Wert(dead) beobachten
+func calcStress() -> void:
+	var s_mod:float = (-gesundheit)/sDiv + ((-completion+100) * dead)/sDiv #deadline Wert(dead) beobachten
 	s_mod = clampf(s_mod, -1, 1)
 	stress = stress + s_mod
 
-func addCompletion():
+func addCompletion() -> void:
 	var minVal = 0
 	var maxVal = 100
 	var completionGrowth = 1
 	completion = clamp( completionGrowth, minVal, maxVal)
+#Produktivitäsparameter berechnen
+func calcProductitvity(): # Überarbeiten??? Berechnet die Produktivität, Formel könnte überarbeitet werden
+	var localDivider = 2 # Wert um Stresswert auf die Hälfte zu limitieren
+	productivity = clampf(gesundheit - stress / localDivider, 0, 100)
+	
 
-func calcProductitvity(stress: float, gesund: float) -> float: # Überarbeiten???
-	var productiv = clampf(gesund - stress*0.5, 0, 100)
-	return productiv
-func workButton ():
+func workButton () -> void:
 	print("work")
-func sleepButton ():
+func sleepButton () -> void:
 	print("sleep")
-func gameButton ():
+func gameButton () -> void:
 	print("game")
+
+func calcElapsedTimeSinceSleep() -> void:
+	elapsedTimeSinceSleep = timeOfLastSleep - Time.get_unix_time_from_system()
+
+# Wird Jede Sekunde ausgelöst und führt alle Kalkulationen durch
+func _on_timer_timeout() -> void:
+	gesundheit = gesundheit - 1 #Testen der Function, sollte bei Ausführen der Szene den Gesundheitswert um 1 senken
