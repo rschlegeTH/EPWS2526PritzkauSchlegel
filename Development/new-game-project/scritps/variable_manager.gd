@@ -34,13 +34,13 @@ func calcGes() -> void:
 	else:
 		g_mod = tanh(stress)/SDIV + tanh((timeOfLastSleep-60)* erhöhung)
 	g_mod = clampf(g_mod, 0, 1) #Ist 1 ein guter Wert für einen Clamp?
-	gesundheit = gesundheit - g_mod
+	gesundheit = clamp(gesundheit - g_mod, 0, 100)
 	
 func calcStress() -> void:
 	var s_mod:float # Stress_Modifikator, also der Wert, um den Stress verändert wird
 	s_mod = (-gesundheit)/SDIV + ((-completion+100) * dead)/SDIV #deadline Wert(dead) beobachten
 	s_mod = clampf(s_mod, -1, 1) # s_mod darf sich nur zwischen -1 bis 1 befinden und wird auf diese Limitiert
-	stress = stress + s_mod # Werte anwenden
+	stress = clamp(stress + s_mod, 0, 100) # Werte anwenden
 
 #Produktivitäsparameter berechnen
 func calcProductitvity(): # Überarbeiten??? Berechnet die Produktivität, Formel könnte überarbeitet werden
