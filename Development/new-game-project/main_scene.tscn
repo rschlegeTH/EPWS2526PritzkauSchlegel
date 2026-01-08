@@ -19,6 +19,9 @@ script = ExtResource("1_wr18j")
 
 [node name="Variablen-Manager" parent="." instance=ExtResource("1_hq1ik")]
 unique_name_in_owner = true
+gesundheit = 55.963
+stress = 57.798
+productivity = 99.815
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
