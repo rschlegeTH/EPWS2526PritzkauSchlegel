@@ -1,27 +1,27 @@
-[gd_scene load_steps=11 format=3 uid="uid://dmq5qw7b8ovi1"]
+[gd_scene load_steps=10 format=3 uid="uid://dmq5qw7b8ovi1"]
 
-[ext_resource type="Script" uid="uid://5f8rgbug8fqr" path="res://days.gd" id="1_8mm7a"]
+[ext_resource type="Script" uid="uid://5f8rgbug8fqr" path="res://scritps/days.gd" id="1_8mm7a"]
 [ext_resource type="PackedScene" uid="uid://001sx3h20shs" path="res://variablen_manager.tscn" id="1_hq1ik"]
-[ext_resource type="Script" uid="uid://jai08o6fqn3f" path="res://scritps/timer.gd" id="1_wr18j"]
-[ext_resource type="Script" uid="uid://d1k61c726l7qn" path="res://work_button.gd" id="2_7ycvg"]
-[ext_resource type="Script" uid="uid://cm85b04uqbmju" path="res://time.gd" id="2_hq1ik"]
-[ext_resource type="Script" uid="uid://bq1yvqe1hlial" path="res://work.gd" id="3_nfk4m"]
-[ext_resource type="Script" uid="uid://deg6qcfxc7e1" path="res://play_button.gd" id="3_wr18j"]
-[ext_resource type="Script" uid="uid://d1bbtegsmion8" path="res://stress.gd" id="4_66tet"]
-[ext_resource type="Script" uid="uid://66broqn01w7x" path="res://sleep_button.gd" id="4_qwutr"]
-[ext_resource type="Script" uid="uid://d24isyeimle14" path="res://health.gd" id="5_7ycvg"]
+[ext_resource type="Script" uid="uid://d1k61c726l7qn" path="res://scritps/work_button.gd" id="2_7ycvg"]
+[ext_resource type="Script" uid="uid://cm85b04uqbmju" path="res://scritps/time.gd" id="2_hq1ik"]
+[ext_resource type="Script" uid="uid://bq1yvqe1hlial" path="res://scritps/work.gd" id="3_nfk4m"]
+[ext_resource type="Script" uid="uid://deg6qcfxc7e1" path="res://scritps/play_button.gd" id="3_wr18j"]
+[ext_resource type="Script" uid="uid://d1bbtegsmion8" path="res://scritps/stress.gd" id="4_66tet"]
+[ext_resource type="Script" uid="uid://66broqn01w7x" path="res://scritps/sleep_button.gd" id="4_qwutr"]
+[ext_resource type="Script" uid="uid://d24isyeimle14" path="res://scritps/health.gd" id="5_7ycvg"]
 
 [node name="main_scene" type="Node2D"]
 
 [node name="UpdateTimer" type="Timer" parent="."]
 autostart = true
-script = ExtResource("1_wr18j")
 
 [node name="Variablen-Manager" parent="." instance=ExtResource("1_hq1ik")]
 unique_name_in_owner = true
-gesundheit = 55.963
-stress = 57.798
 productivity = 99.815
+completion = 45.872
+time_Minutes = 55
+time_Hour = 23
+ticksSinceSleep = 200
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

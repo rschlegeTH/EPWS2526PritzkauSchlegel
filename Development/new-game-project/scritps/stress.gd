@@ -6,5 +6,5 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	$".".text = str(temp.DEADLINE - temp.dead) # Schreib den wert von dead auf das Lable
+func _process(_delta: float) -> void:
+	$".".text = str(temp.stress).pad_decimals(2) + "%" # Schreib den wert von stress auf das Lable

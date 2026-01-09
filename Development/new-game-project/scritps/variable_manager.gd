@@ -1,86 +1,105 @@
 extends Node
 #Hauptparameter
-@export_range(0, 100) var gesundheit: float = 100 #Gesundheit Standard ist 100
-@export_range(0, 100) var stress: float = 0#Stress Standard ist 0
-@export_range(0, 100) var productivity: float = 100 #Produktivität Standard ist 100
-@export_range(0, 100) var completion: float = 0 #Arbeitsfortschritt Standard ist 0
+@export_range(0, 100) var gesundheit: float = 100 ## Gesundheitsvariable. Standard ist 100.
+@export_range(0, 100) var stress: float = 0 ## Stressvariable. Standard ist 0.
+@export_range(0, 100) var productivity: float = 100 ## Produktivitätsvariable beschreibt die Produktivät bei Ausführen einer Aufgabe. Standard ist 100.
+@export_range(0, 100) var completion: float = 0 ## Arbeitsfortschritt. Standard ist 0
 
 # Zeit für die Uhrzeit
 @export_group("Zeit", "time")
-@export_range(0,55, 5) var time_Minutes:int = 0
-@export_range(0,23) var time_Hour:int = 0
+@export_range(0,55, 5) var time_Minutes:int = 0 ## Der Minutenteil der Uhrzeit.
+@export_range(0,23) var time_Hour:int = 0 ## Der Stundenanteil der Uhrzeit.
 # Deadline-Segment der Zeit
-var dead: int = 1 # verbleibende Zeit zur deadline, zählt aufwärts, wichtig für calcStress, da höherer Wert = höherer Stresszuwachs
-const DEADLINE: int = 6 # Wert, welchen dead erreichen muss, um die deadline auszulösen
+var dead: int = 1 ## Verbleibende Zeit zur deadline, zählt aufwärts, wichtig für calcStress, da höherer Wert = höherer Stresszuwachs
+const DEADLINE: int = 6 ## Wert, welchen dead erreichen muss, um die deadline auszulösen
 
 # Zeit muss gezeitet werden
 
 # Parameter zur Kalkulation der Zeit seit Schlaf
-var timeOfLastSleep: float = Time.get_unix_time_from_system() # Standardwerte mit Unix_Time, sollte aber evtl mit engine Time gemacht werden?
-var elapsedTimeSinceSleep: float # Standardwerte
+@export_range(0, 288) var ticksSinceSleep: int = 0 ## Die vergangenen Ticks, seit der letzten Nutzung des Schlafbuttons.
 #Sonstige Variablen
-const SDIV: float = 100 #standerdDivider, wird für Beeinflussung der Rechnungeng verwendet und beeinflusst das Kurvenverhalten.
+const SDIV: float = 100 ## standerdDivider, wird für Beeinflussung der Rechnungeng verwendet und beeinflusst das Kurvenverhalten.
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	calcElapsedTimeSinceSleep()
+	pass
 
 # Anpassen, weil g_mod < 1 und clamp immer auf 1 setzt
+## Führt die Kalkulation des Gesundheitswertes aus.
 func calcGes() -> void:
-	var g_mod = 0 # Gesundheits_Modifikitor, also der Wert, um den die Gesundheit verändert wird
-	var erhöhung = 0.1 # Wachtum der Kurve
-	if(timeOfLastSleep < 60):
+	var g_mod = 0 ## Gesundheits_Modifikitor, also der Wert, um den die Gesundheit verändert wird
+	var erhöhung = 0.1 ## Wachtum der Kurve
+	if(ticksSinceSleep < 96):
 		g_mod = tanh((stress)/SDIV)
 	else:
-		g_mod = tanh(stress)/SDIV + tanh((timeOfLastSleep-60)* erhöhung)
-	g_mod = clampf(g_mod, 0, 1) #Ist 1 ein guter Wert für einen Clamp?
+		g_mod = tanh(stress)/SDIV + tanh((ticksSinceSleep-96)* erhöhung)
+	g_mod = clampf(g_mod, -1, 1) #Ist 1 ein guter Wert für einen Clamp?
 	gesundheit = clamp(gesundheit - g_mod, 0, 100)
-	
+
+## Führt die Kalkulation des Stresswertes aus
 func calcStress() -> void:
 	var s_mod:float # Stress_Modifikator, also der Wert, um den Stress verändert wird
 	s_mod = (-gesundheit)/SDIV + ((-completion+100) * dead)/SDIV #deadline Wert(dead) beobachten
 	s_mod = clampf(s_mod, -1, 1) # s_mod darf sich nur zwischen -1 bis 1 befinden und wird auf diese Limitiert
 	stress = clamp(stress + s_mod, 0, 100) # Werte anwenden
 
-#Produktivitäsparameter berechnen
-func calcProductitvity(): # Überarbeiten??? Berechnet die Produktivität, Formel könnte überarbeitet werden
+## Produktivitäsparameter berechnen
+func calcProductitvity() -> void: # Überarbeiten??? Berechnet die Produktivität, Formel könnte überarbeitet werden
 	var localDivider = 2 # Wert um Stresswert auf die Hälfte zu limitieren
 	productivity = clampf(gesundheit - stress / localDivider, 0, 100)
 
-func addCompletion(completionGrowth = 1, minVal = 0, maxVal = 100) -> void:
-	var prodPercent = productivity /100
-	completion = clamp( completion + completionGrowth * prodPercent, minVal, maxVal)
-
-func addGesundheit(Ges_Inc:int = 30):
+## Erhöht den Completion-Wert um 1 oder den Eingabewert
+func addCompletion(completionGrowth = 1) -> void:
+	if(completion == 100):
+		print("Work Successfull!!!")
+		return
+	var prodPercent:float = productivity /100 ## Productivity durch 100 teilen, um einen Wert kleiner 1 zu erhalten.
+	completion = clamp( completion + clamp(completionGrowth, 0, 100) * prodPercent, 0, 100)
+## Gesundheit um den Eingabewert Erhöhen, Standartwert ist 30
+func addGesundheit(Ges_Inc:float = 30) -> void:
 	gesundheit = clampf(gesundheit+ Ges_Inc, 0, 100)
 
-#Buttone
+## Buttone
 func workButton () -> void:
 	print("work")
-	addCompletion()
+	work()
 func sleepButton () -> void:
 	print("sleep")
 	sleep()
 func gameButton () -> void:
 	print("game")
+	playGame()
 
-# Berechnet den Zeitunterschied zwischen der aktuellen Zeit und timeOfLastSleep und weist diesen elapsedTimeSinceSleep zu.
-func calcElapsedTimeSinceSleep() -> void:
-	elapsedTimeSinceSleep = timeOfLastSleep - Time.get_unix_time_from_system()
-
-# Setzt timeOfLastSleep auf die akutelle Zeit zurück
-func resetSleepTimeVariables() -> void:
-	timeOfLastSleep = Time.get_unix_time_from_system() #akutelle Zeit speichern
-	calcElapsedTimeSinceSleep() # elapsedTimeSinceSleep rekalkulieren
-
-# Schlafen, erhöht Gesundheitswert und verbraucht Zeit
-func sleep(sleep_Increase: int=30, time_spent:int = 8):
-	addGesundheit(sleep_Increase)
+## Erhöht den Arbeitsfortschritt um die investierte Zeit und verbraucht die investierte Zeit.
+func work(time_spent:int = 8, standardIncrease: float = 1 ) -> void:
+	@warning_ignore("narrowing_conversion") addCompletion(time_spent * standardIncrease)
 	increase_Time(time_spent)
 
-# Uhrzeit erhöhen
+## Schlafen, erhöht Gesundheitswert abhängig von der verbrauchten Zeit und verringert die Zeit um time_spent. standardIncrease beschreibt den Gesundheitsgewinn pro Stunde.
+func sleep(time_spent:int = 8, standardIncrease: float = 3.75 ) -> void:
+	if(ticksSinceSleep < 48):
+		print("not successfull")
+		return
+	addGesundheit(time_spent * standardIncrease)
+	increase_Time(time_spent)
+	if(time_spent < 6):
+		@warning_ignore("integer_division") ticksSinceSleep = (ticksSinceSleep/time_spent) 
+	else:
+		ticksSinceSleep = 0
+	
+
+## Wird bei drücken des "Play"-Buttons ausgeführt.
+func playGame(time_spent: int=4, standardIncrease: float = 1 ) -> void:
+	reduceStress(time_spent * standardIncrease)
+	increase_Time(time_spent)
+
+## Reduziert den Stress um den eingegebenen Wert. Werte werden immer zwischen 0-100 liegen.
+func reduceStress(reduction_Val:float = 5) -> void:
+	stress = clampf(stress - reduction_Val, 0, 100)
+
+## Uhrzeit erhöhen um einen bestimmten Stundend-Wert, sollte keine Wert übergeben werden oder der Wert 0 sein, wird die Zeit um 5 min erhöht.
 func increase_Time(time_Inc:int = 0) -> void:
-	if(time_Inc == 0):
+	if(time_Inc == 0): ## Normaler Fortschritt der Zeit
 		if(time_Minutes < 55):
 			time_Minutes = time_Minutes + 5
 		elif(time_Hour < 23):
@@ -90,18 +109,28 @@ func increase_Time(time_Inc:int = 0) -> void:
 			time_Minutes = 0
 			time_Hour = 0
 			dead = dead + 1
-	elif((time_Hour + time_Inc) < 23):
+	elif((time_Hour + time_Inc) < 23): ## Aktivität findet in einem Tag statt
 		time_Hour = time_Hour + time_Inc
-	else:
+		for n in time_Inc: ## Ein Game tick pro Stunde der Aktivität ausführen
+			calcGes()
+			calcStress()
+			calcProductitvity()
+			ticksSinceSleep = ticksSinceSleep + 1
+	elif(dead != DEADLINE): ## Aktivität geht in den nächsten Tag
 		time_Hour = time_Hour + time_Inc - 24
 		dead = dead + 1
-	if(dead == DEADLINE):
+		for n in time_Inc: ## Ein Game tick pro Stunde der Aktivität ausführen
+			calcGes()
+			calcStress()
+			calcProductitvity()
+			ticksSinceSleep = ticksSinceSleep + 1
+	if(dead == DEADLINE): #Deadline könnte um 23:55 getriggert werden, statt um 00:00
 		print("Deadline")
 
-# Wird Jede Sekunde vom UpdateTimer-Signal ausgelöst und führt alle Kalkulationen durch
+## Wird Jede Sekunde vom UpdateTimer-Signal ausgelöst und führt alle Kalkulationen durch
 func _on_timer_timeout() -> void:
 	calcGes()
 	calcStress()
 	calcProductitvity()
-	calcElapsedTimeSinceSleep()
 	increase_Time()
+	ticksSinceSleep = ticksSinceSleep + 1
