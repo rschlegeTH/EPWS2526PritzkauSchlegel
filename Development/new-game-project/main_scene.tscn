@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=14 format=3 uid="uid://dmq5qw7b8ovi1"]
+=======
+[gd_scene load_steps=11 format=3 uid="uid://dmq5qw7b8ovi1"]
+>>>>>>> Stashed changes
 
 [ext_resource type="Script" uid="uid://5f8rgbug8fqr" path="res://scritps/days.gd" id="1_8mm7a"]
 [ext_resource type="PackedScene" uid="uid://001sx3h20shs" path="res://variablen_manager.tscn" id="1_hq1ik"]
@@ -7,6 +11,7 @@
 [ext_resource type="Script" uid="uid://bq1yvqe1hlial" path="res://scritps/work.gd" id="3_nfk4m"]
 [ext_resource type="Script" uid="uid://deg6qcfxc7e1" path="res://scritps/play_button.gd" id="3_wr18j"]
 [ext_resource type="Script" uid="uid://d1bbtegsmion8" path="res://scritps/stress.gd" id="4_66tet"]
+[ext_resource type="Script" uid="uid://b6h4k3ese3fh2" path="res://scritps/work_rich_text_label.gd" id="4_671wp"]
 [ext_resource type="Script" uid="uid://66broqn01w7x" path="res://scritps/sleep_button.gd" id="4_qwutr"]
 [ext_resource type="Script" uid="uid://d24isyeimle14" path="res://scritps/health.gd" id="5_7ycvg"]
 
@@ -33,11 +38,20 @@ autostart = true
 
 [node name="Variablen-Manager" parent="." instance=ExtResource("1_hq1ik")]
 unique_name_in_owner = true
+<<<<<<< Updated upstream
 g_modTicksSinceSleep = SubResource("Curve_7ycvg")
 g_modStress = SubResource("Curve_wr18j")
 s_modDead = SubResource("Curve_qwutr")
 s_modGesundheit = SubResource("Curve_671wp")
 time_Hour = 8
+=======
+gesundheit = 34.88
+stress = 22.936
+completion = 45.872
+time_Minutes = 55
+time_Hour = 23
+ticksSinceSleep = 200
+>>>>>>> Stashed changes
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -49,8 +63,16 @@ offset_top = 132.0
 offset_right = -281.0
 offset_bottom = 272.0
 theme_override_font_sizes/font_size = 96
-text = "Work"
 script = ExtResource("2_7ycvg")
+
+[node name="WorkRichTextLabel" type="RichTextLabel" parent="Buttons/Work Button"]
+layout_mode = 0
+offset_right = 254.0
+offset_bottom = 140.0
+theme_override_font_sizes/normal_font_size = 96
+bbcode_enabled = true
+text = "[workEffect]Work[/workEffect]"
+script = ExtResource("4_671wp")
 
 [node name="Play Button" type="Button" parent="Buttons"]
 offset_left = -139.0
@@ -58,8 +80,15 @@ offset_top = 133.0
 offset_right = 115.0
 offset_bottom = 273.0
 theme_override_font_sizes/font_size = 96
-text = "Play"
 script = ExtResource("3_wr18j")
+
+[node name="PlayRichTextLabel" type="RichTextLabel" parent="Buttons/Play Button"]
+layout_mode = 0
+offset_right = 254.0
+offset_bottom = 141.0
+theme_override_font_sizes/normal_font_size = 96
+bbcode_enabled = true
+text = "[center]Play[/center]"
 
 [node name="Sleep Button" type="Button" parent="Buttons"]
 offset_left = 235.0
@@ -67,8 +96,15 @@ offset_top = 133.0
 offset_right = 489.0
 offset_bottom = 273.0
 theme_override_font_sizes/font_size = 96
-text = "Sleep"
 script = ExtResource("4_qwutr")
+
+[node name="SleepRichTextLabel" type="RichTextLabel" parent="Buttons/Sleep Button"]
+layout_mode = 0
+offset_right = 254.0
+offset_bottom = 141.0
+theme_override_font_sizes/normal_font_size = 96
+bbcode_enabled = true
+text = "[center]Sleep[/center]"
 
 [node name="Lables" type="Node" parent="."]
 
@@ -161,6 +197,8 @@ offset_bottom = 94.0
 theme_override_font_sizes/font_size = 64
 text = "0%"
 script = ExtResource("5_7ycvg")
+
+[node name="Node" type="Node" parent="."]
 
 [connection signal="timeout" from="UpdateTimer" to="Variablen-Manager" method="_on_timer_timeout"]
 [connection signal="pressed" from="Buttons/Work Button" to="Buttons/Work Button" method="_on_pressed"]
