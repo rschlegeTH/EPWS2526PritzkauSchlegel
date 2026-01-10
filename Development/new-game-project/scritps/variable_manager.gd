@@ -49,8 +49,8 @@ func calcGes() -> void:
 ## Führt die Kalkulation des Stresswertes aus
 func calcStress() -> void:
 	var s_mod:float # Stress_Modifikator, also der Wert, um den Stress verändert wird
-	var deadPortion: float = 0.0
-	var gesundheitPortion: float = 0.0
+	var deadPortion: float = 0.0 ## Der Anteil den dead auf s_mod hat
+	var gesundheitPortion: float = 0.0 ## Der Anteil den gesundheit auf s_mod hat
 	
 	deadPortion = s_modDead.sample((100.0-completion) * (dead-1) / 500.0)
 	gesundheitPortion = s_modGesundheit.sample(1.0-gesundheit/100.0)
