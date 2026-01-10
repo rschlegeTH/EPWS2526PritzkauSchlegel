@@ -1,3 +1,4 @@
+@tool
 extends Node
 #Hauptparameter
 @export_range(0, 100) var gesundheit: float = 100 ## Gesundheitsvariable. Standard ist 100.
@@ -5,9 +6,16 @@ extends Node
 @export_range(0, 100) var productivity: float = 100 ## Produktivitätsvariable beschreibt die Produktivät bei Ausführen einer Aufgabe. Standard ist 100.
 @export_range(0, 100) var completion: float = 0 ## Arbeitsfortschritt. Standard ist 0
 
+#Kurven zur Parameter mod variabeln
+@export var g_modTicksSinceSleep: Curve ## Kurve welche den Einfluss von ticksSinceSleep auf g_mod beschreibt
+@export var g_modStress: Curve ## Kurve welche den Einfluss von stress auf g_mod beschreibt
+@export var s_modDead: Curve ## Kurve welche den Einfluss von dead auf s_mod beschreibt
+@export var s_modGesundheit: Curve ## Kurve welche den Einfluss von gesundheit auf s_mod beschreibt
+
 # Zeit für die Uhrzeit
+const  minuteTick: int = 5
 @export_group("Zeit", "time")
-@export_range(0,55, 5) var time_Minutes:int = 0 ## Der Minutenteil der Uhrzeit.
+@export_range(0,60-minuteTick, minuteTick) var time_Minutes:int = 0 ## Der Minutenteil der Uhrzeit.
 @export_range(0,23) var time_Hour:int = 0 ## Der Stundenanteil der Uhrzeit.
 # Deadline-Segment der Zeit
 var dead: int = 1 ## Verbleibende Zeit zur deadline, zählt aufwärts, wichtig für calcStress, da höherer Wert = höherer Stresszuwachs
@@ -27,19 +35,28 @@ func _ready() -> void:
 # Anpassen, weil g_mod < 1 und clamp immer auf 1 setzt
 ## Führt die Kalkulation des Gesundheitswertes aus.
 func calcGes() -> void:
-	var g_mod = 0 ## Gesundheits_Modifikitor, also der Wert, um den die Gesundheit verändert wird
-	var erhöhung = 0.1 ## Wachtum der Kurve
-	if(ticksSinceSleep < 96):
-		g_mod = tanh((stress)/SDIV)
-	else:
-		g_mod = tanh(stress)/SDIV + tanh((ticksSinceSleep-96)* erhöhung)
+	var g_mod: float = 0.0 ## Gesundheits_Modifikitor, also der Wert, um den die Gesundheit verändert wird
+	var ticksSinceSleepPortion: float = 0.0 ## Der Anteil den ticksSinceSleep auf g_mod hat
+	var stessPortion: float = 0.0 ## Der Anteil den stress auf g_mod hat
+	
+	ticksSinceSleepPortion = g_modTicksSinceSleep.sample(ticksSinceSleep/(48.0*60.0/minuteTick)) # Berechnet den Anteil von ticksSinceSleep auf g_mod. Begrenzt auf maximal 48 stunden
+	stessPortion = g_modStress.sample(stress/100.0) # Berechnet den Anteil von stress auf g_mod
+	
+	g_mod = -(ticksSinceSleepPortion + stessPortion)
 	g_mod = clampf(g_mod, -1, 1) #Ist 1 ein guter Wert für einen Clamp?
-	gesundheit = clamp(gesundheit - g_mod, 0, 100)
+	gesundheit = clamp(gesundheit + g_mod, 0, 100)
 
 ## Führt die Kalkulation des Stresswertes aus
 func calcStress() -> void:
 	var s_mod:float # Stress_Modifikator, also der Wert, um den Stress verändert wird
-	s_mod = (-gesundheit)/SDIV + ((-completion+100) * dead)/SDIV #deadline Wert(dead) beobachten
+	var deadPortion: float = 0.0
+	var gesundheitPortion: float = 0.0
+	
+	deadPortion = s_modDead.sample((100.0-completion) * (dead-1) / 500.0)
+	gesundheitPortion = s_modGesundheit.sample(1.0-gesundheit/100.0)
+	
+	s_mod = deadPortion + gesundheitPortion
+	#s_mod = (-gesundheit)/SDIV + ((-completion+100) * dead)/SDIV #deadline Wert(dead) beobachten
 	s_mod = clampf(s_mod, -1, 1) # s_mod darf sich nur zwischen -1 bis 1 befinden und wird auf diese Limitiert
 	stress = clamp(stress + s_mod, 0, 100) # Werte anwenden
 
@@ -49,16 +66,22 @@ func calcProductitvity() -> void: # Überarbeiten??? Berechnet die Produktivitä
 	productivity = clampf(gesundheit - stress / localDivider, 0, 100)
 
 ## Erhöht den Completion-Wert um 1 oder den Eingabewert
-func addCompletion(completionGrowth = 1) -> void:
+func addCompletion(completionGrowth) -> void:
 	if(completion == 100):
 		print("Work Successfull!!!")
 		return
 	var prodPercent:float = productivity /100 ## Productivity durch 100 teilen, um einen Wert kleiner 1 zu erhalten.
-	completion = clamp( completion + clamp(completionGrowth, 0, 100) * prodPercent, 0, 100)
+	completion = completion + completionGrowth * prodPercent
+	completion = clampf(completion, 0, 100)
+	
 ## Gesundheit um den Eingabewert Erhöhen, Standartwert ist 30
 func addGesundheit(Ges_Inc:float = 30) -> void:
-	gesundheit = clampf(gesundheit+ Ges_Inc, 0, 100)
-
+	gesundheit = clampf(gesundheit + Ges_Inc, 0, 100)
+	
+## Stress um den Eingabewert Erhöhen, Standartwert ist 10
+func addStress(Stress_Inc:float = 10) -> void:
+	stress = clampf(stress + Stress_Inc, 0, 100)
+	
 ## Buttone
 func workButton () -> void:
 	print("work")
@@ -71,8 +94,9 @@ func gameButton () -> void:
 	playGame()
 
 ## Erhöht den Arbeitsfortschritt um die investierte Zeit und verbraucht die investierte Zeit.
-func work(time_spent:int = 8, standardIncrease: float = 1 ) -> void:
+func work(time_spent:int = 4, standardIncrease: float = 1.8) -> void: # standardIncrease beschreibt wie viel prozent Arbeit der Spieler pro Stunde schafft
 	@warning_ignore("narrowing_conversion") addCompletion(time_spent * standardIncrease)
+	addStress(time_spent)
 	increase_Time(time_spent)
 
 ## Schlafen, erhöht Gesundheitswert abhängig von der verbrauchten Zeit und verringert die Zeit um time_spent. standardIncrease beschreibt den Gesundheitsgewinn pro Stunde.
@@ -100,8 +124,8 @@ func reduceStress(reduction_Val:float = 5) -> void:
 ## Uhrzeit erhöhen um einen bestimmten Stundend-Wert, sollte keine Wert übergeben werden oder der Wert 0 sein, wird die Zeit um 5 min erhöht.
 func increase_Time(time_Inc:int = 0) -> void:
 	if(time_Inc == 0): ## Normaler Fortschritt der Zeit
-		if(time_Minutes < 55):
-			time_Minutes = time_Minutes + 5
+		if(time_Minutes < 60-minuteTick):
+			time_Minutes = time_Minutes + minuteTick
 		elif(time_Hour < 23):
 			time_Minutes = 0
 			time_Hour = time_Hour + 1
@@ -115,7 +139,7 @@ func increase_Time(time_Inc:int = 0) -> void:
 			calcGes()
 			calcStress()
 			calcProductitvity()
-			ticksSinceSleep = ticksSinceSleep + 1
+			ticksSinceSleep = ticksSinceSleep + 60/minuteTick # 60 min durch den Tickwert
 	elif(dead != DEADLINE): ## Aktivität geht in den nächsten Tag
 		time_Hour = time_Hour + time_Inc - 24
 		dead = dead + 1
@@ -123,7 +147,7 @@ func increase_Time(time_Inc:int = 0) -> void:
 			calcGes()
 			calcStress()
 			calcProductitvity()
-			ticksSinceSleep = ticksSinceSleep + 1
+			ticksSinceSleep = ticksSinceSleep + 60/minuteTick # 60 min durch den Tickwert
 	if(dead == DEADLINE): #Deadline könnte um 23:55 getriggert werden, statt um 00:00
 		print("Deadline")
 

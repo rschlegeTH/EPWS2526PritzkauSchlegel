@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dmq5qw7b8ovi1"]
+[gd_scene load_steps=14 format=3 uid="uid://dmq5qw7b8ovi1"]
 
 [ext_resource type="Script" uid="uid://5f8rgbug8fqr" path="res://scritps/days.gd" id="1_8mm7a"]
 [ext_resource type="PackedScene" uid="uid://001sx3h20shs" path="res://variablen_manager.tscn" id="1_hq1ik"]
@@ -10,6 +10,22 @@
 [ext_resource type="Script" uid="uid://66broqn01w7x" path="res://scritps/sleep_button.gd" id="4_qwutr"]
 [ext_resource type="Script" uid="uid://d24isyeimle14" path="res://scritps/health.gd" id="5_7ycvg"]
 
+[sub_resource type="Curve" id="Curve_7ycvg"]
+_data = [Vector2(0.32911396, 0), 0.0, 0.74528307, 0, 1, Vector2(1, 0.5), 0.74528307, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_wr18j"]
+_data = [Vector2(0, 0), 0.0, 0.5, 0, 1, Vector2(1, 0.5), 0.5, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_qwutr"]
+_data = [Vector2(0, 0), 0.0, 0.5, 0, 1, Vector2(1, 0.5), 0.5, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_671wp"]
+_data = [Vector2(0, 0), 0.0, 0.5, 0, 1, Vector2(1, 0.5), 0.5, 0.0, 1, 0]
+point_count = 2
+
 [node name="main_scene" type="Node2D"]
 
 [node name="UpdateTimer" type="Timer" parent="."]
@@ -17,11 +33,11 @@ autostart = true
 
 [node name="Variablen-Manager" parent="." instance=ExtResource("1_hq1ik")]
 unique_name_in_owner = true
-productivity = 99.815
-completion = 45.872
-time_Minutes = 55
-time_Hour = 23
-ticksSinceSleep = 200
+g_modTicksSinceSleep = SubResource("Curve_7ycvg")
+g_modStress = SubResource("Curve_wr18j")
+s_modDead = SubResource("Curve_qwutr")
+s_modGesundheit = SubResource("Curve_671wp")
+time_Hour = 8
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
