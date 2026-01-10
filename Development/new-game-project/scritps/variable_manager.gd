@@ -42,7 +42,7 @@ func calcGes() -> void:
 	ticksSinceSleepPortion = g_modTicksSinceSleep.sample(ticksSinceSleep/(48.0*60.0/minuteTick)) # Berechnet den Anteil von ticksSinceSleep auf g_mod. Begrenzt auf maximal 48 stunden
 	stessPortion = g_modStress.sample(stress/100.0) # Berechnet den Anteil von stress auf g_mod
 	
-	g_mod = -(ticksSinceSleepPortion + stessPortion)
+	g_mod = -(ticksSinceSleepPortion + stessPortion - 1)
 	g_mod = clampf(g_mod, -1, 1) #Ist 1 ein guter Wert für einen Clamp?
 	gesundheit = clamp(gesundheit + g_mod, 0, 100)
 
@@ -55,7 +55,7 @@ func calcStress() -> void:
 	deadPortion = s_modDead.sample((100.0-completion) * (dead-1) / 500.0)
 	gesundheitPortion = s_modGesundheit.sample(1.0-gesundheit/100.0)
 	
-	s_mod = deadPortion + gesundheitPortion
+	s_mod = deadPortion + gesundheitPortion - 1
 	#s_mod = (-gesundheit)/SDIV + ((-completion+100) * dead)/SDIV #deadline Wert(dead) beobachten
 	s_mod = clampf(s_mod, -1, 1) # s_mod darf sich nur zwischen -1 bis 1 befinden und wird auf diese Limitiert
 	stress = clamp(stress + s_mod, 0, 100) # Werte anwenden
@@ -114,12 +114,8 @@ func sleep(time_spent:int = 8, standardIncrease: float = 3.75 ) -> void:
 
 ## Wird bei drücken des "Play"-Buttons ausgeführt.
 func playGame(time_spent: int=4, standardIncrease: float = 1 ) -> void:
-	reduceStress(time_spent * standardIncrease)
+	addStress(-(time_spent * standardIncrease))
 	increase_Time(time_spent)
-
-## Reduziert den Stress um den eingegebenen Wert. Werte werden immer zwischen 0-100 liegen.
-func reduceStress(reduction_Val:float = 5) -> void:
-	stress = clampf(stress - reduction_Val, 0, 100)
 
 ## Uhrzeit erhöhen um einen bestimmten Stundend-Wert, sollte keine Wert übergeben werden oder der Wert 0 sein, wird die Zeit um 5 min erhöht.
 func increase_Time(time_Inc:int = 0) -> void:

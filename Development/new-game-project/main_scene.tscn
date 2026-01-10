@@ -11,19 +11,19 @@
 [ext_resource type="Script" uid="uid://d24isyeimle14" path="res://scritps/health.gd" id="5_7ycvg"]
 
 [sub_resource type="Curve" id="Curve_7ycvg"]
-_data = [Vector2(0.32911396, 0), 0.0, 0.74528307, 0, 1, Vector2(1, 0.5), 0.74528307, 0.0, 1, 0]
+_data = [Vector2(0.33461538, 0.5), 0.0, 0.75144506, 0, 1, Vector2(1, 1), 0.75144506, 0.0, 1, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_wr18j"]
-_data = [Vector2(0, 0), 0.0, 0.5, 0, 1, Vector2(1, 0.5), 0.5, 0.0, 1, 0]
+_data = [Vector2(0, 0.5), 0.0, 0.5, 0, 1, Vector2(1, 1), 0.5, 0.0, 1, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_qwutr"]
-_data = [Vector2(0, 0), 0.0, 0.5, 0, 1, Vector2(1, 0.5), 0.5, 0.0, 1, 0]
+_data = [Vector2(0, 0.5), 0.0, 0.5, 0, 1, Vector2(1, 1), 0.5, 0.0, 1, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_671wp"]
-_data = [Vector2(0, 0), 0.0, 0.5, 0, 1, Vector2(1, 0.5), 0.5, 0.0, 1, 0]
+_data = [Vector2(0, 0.5), 0.0, 0.5, 0, 1, Vector2(1, 1), 0.5, 0.0, 1, 0]
 point_count = 2
 
 [node name="main_scene" type="Node2D"]
