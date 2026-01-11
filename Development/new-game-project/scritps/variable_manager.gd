@@ -11,6 +11,7 @@ extends Node
 @export var g_modStress: Curve ## Kurve welche den Einfluss von stress auf g_mod beschreibt
 @export var s_modDead: Curve ## Kurve welche den Einfluss von dead auf s_mod beschreibt
 @export var s_modGesundheit: Curve ## Kurve welche den Einfluss von gesundheit auf s_mod beschreibt
+@export var productivityScale: Curve ## Kurve welche den relativen Einfluss auf completion darstellt
 
 # Zeit für die Uhrzeit
 const  MINUTETICK: int = 5
@@ -69,7 +70,7 @@ func addCompletion(completionGrowth) -> void:
 	if(completion == 100):
 		print("Work Successfull!!!")
 		return
-	var prodPercent:float = productivity /100 ## Productivity durch 100 teilen, um einen Wert kleiner 1 zu erhalten.
+	var prodPercent:float = productivityScale.sample(productivity * 0.01)  ## Productivity wird relativ zur ProductivityScale kurve multipliziert
 	completion = completion + completionGrowth * prodPercent
 	completion = clampf(completion, 0, 100)
 	
@@ -93,7 +94,7 @@ func gameButton () -> void:
 	playGame()
 
 ## Erhöht den Arbeitsfortschritt um die investierte Zeit und verbraucht die investierte Zeit.
-func work(time_spent:int = 4, standardIncrease: float = 1.8) -> void: # standardIncrease beschreibt wie viel prozent Arbeit der Spieler pro Stunde schafft
+func work(time_spent:int = 4, standardIncrease: float = 2) -> void: # standardIncrease beschreibt wie viel prozent Arbeit der Spieler pro Stunde schafft
 	@warning_ignore("narrowing_conversion") addCompletion(time_spent * standardIncrease)
 	addStress(time_spent)
 	increase_Time(time_spent)
@@ -112,7 +113,7 @@ func sleep(time_spent:int = 8, standardIncrease: float = 3.75 ) -> void:
 	
 
 ## Wird bei drücken des "Play"-Buttons ausgeführt.
-func playGame(time_spent: int=4, standardIncrease: float = 1 ) -> void:
+func playGame(time_spent: int=4, standardIncrease: float = 1.5 ) -> void:
 	addStress(-(time_spent * standardIncrease))
 	increase_Time(time_spent)
 

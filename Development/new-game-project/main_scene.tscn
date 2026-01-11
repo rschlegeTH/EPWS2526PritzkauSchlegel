@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dmq5qw7b8ovi1"]
+[gd_scene load_steps=18 format=3 uid="uid://dmq5qw7b8ovi1"]
 
 [ext_resource type="Script" uid="uid://5f8rgbug8fqr" path="res://scritps/days.gd" id="1_8mm7a"]
 [ext_resource type="PackedScene" uid="uid://001sx3h20shs" path="res://variablen_manager.tscn" id="1_hq1ik"]
@@ -29,6 +29,10 @@ point_count = 2
 _data = [Vector2(0, 0.5), 0.0, 0.5, 0, 1, Vector2(1, 1), 0.5, 0.0, 1, 0]
 point_count = 2
 
+[sub_resource type="Curve" id="Curve_mo76n"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 2.3332589, 0.0, 0, 0]
+point_count = 2
+
 [node name="main_scene" type="Node2D"]
 
 [node name="UpdateTimer" type="Timer" parent="."]
@@ -36,11 +40,11 @@ autostart = true
 
 [node name="Variablen-Manager" parent="." instance=ExtResource("1_hq1ik")]
 unique_name_in_owner = true
-gesundheit = 12.844
 g_modTicksSinceSleep = SubResource("Curve_7ycvg")
 g_modStress = SubResource("Curve_wr18j")
 s_modDead = SubResource("Curve_qwutr")
 s_modGesundheit = SubResource("Curve_671wp")
+productivityScale = SubResource("Curve_mo76n")
 time_Hour = 8
 ticksSinceSleep = 25
 
