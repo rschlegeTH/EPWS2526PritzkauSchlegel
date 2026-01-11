@@ -62,8 +62,7 @@ func calcStress() -> void:
 
 ## Produktivitäsparameter berechnen
 func calcProductitvity() -> void: # Überarbeiten??? Berechnet die Produktivität, Formel könnte überarbeitet werden
-	var localDivider = 2 # Wert um Stresswert auf die Hälfte zu limitieren
-	productivity = clampf(gesundheit - stress / localDivider, 0, 100)
+	productivity = clampf(gesundheit * 0.5 + (-stress + 100) * 0.5 , 0, 100)
 
 ## Erhöht den Completion-Wert um 1 oder den Eingabewert
 func addCompletion(completionGrowth) -> void:

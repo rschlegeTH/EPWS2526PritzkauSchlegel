@@ -1,6 +1,5 @@
 extends RichTextLabel
 
-
 var play_effect:PlayEffect
 @onready var temp = %"Variablen-Manager"
 # Called when the node enters the scene tree for the first time.
