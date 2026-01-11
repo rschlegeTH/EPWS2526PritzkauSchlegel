@@ -1,14 +1,17 @@
-[gd_scene load_steps=14 format=3 uid="uid://dmq5qw7b8ovi1"]
+[gd_scene load_steps=17 format=3 uid="uid://dmq5qw7b8ovi1"]
 
 [ext_resource type="Script" uid="uid://5f8rgbug8fqr" path="res://scritps/days.gd" id="1_8mm7a"]
 [ext_resource type="PackedScene" uid="uid://001sx3h20shs" path="res://variablen_manager.tscn" id="1_hq1ik"]
 [ext_resource type="Script" uid="uid://d1k61c726l7qn" path="res://scritps/work_button.gd" id="2_7ycvg"]
 [ext_resource type="Script" uid="uid://cm85b04uqbmju" path="res://scritps/time.gd" id="2_hq1ik"]
 [ext_resource type="Script" uid="uid://bq1yvqe1hlial" path="res://scritps/work.gd" id="3_nfk4m"]
+[ext_resource type="Script" uid="uid://b8vwaq150pbxl" path="res://scritps/work_rich_text_label.gd" id="3_qwutr"]
 [ext_resource type="Script" uid="uid://deg6qcfxc7e1" path="res://scritps/play_button.gd" id="3_wr18j"]
 [ext_resource type="Script" uid="uid://d1bbtegsmion8" path="res://scritps/stress.gd" id="4_66tet"]
 [ext_resource type="Script" uid="uid://66broqn01w7x" path="res://scritps/sleep_button.gd" id="4_qwutr"]
 [ext_resource type="Script" uid="uid://d24isyeimle14" path="res://scritps/health.gd" id="5_7ycvg"]
+[ext_resource type="Script" uid="uid://trb6bkry4npk" path="res://scritps/play_rich_text_label.gd" id="5_qwutr"]
+[ext_resource type="Script" uid="uid://bx3oit2pd0xot" path="res://scritps/sleep_rich_text_label.gd" id="7_671wp"]
 
 [sub_resource type="Curve" id="Curve_7ycvg"]
 _data = [Vector2(0.33461538, 0.5), 0.0, 0.75144506, 0, 1, Vector2(1, 1), 0.75144506, 0.0, 1, 0]
@@ -33,6 +36,7 @@ autostart = true
 
 [node name="Variablen-Manager" parent="." instance=ExtResource("1_hq1ik")]
 unique_name_in_owner = true
+gesundheit = 12.844
 g_modTicksSinceSleep = SubResource("Curve_7ycvg")
 g_modStress = SubResource("Curve_wr18j")
 s_modDead = SubResource("Curve_qwutr")
@@ -49,8 +53,17 @@ offset_top = 132.0
 offset_right = -281.0
 offset_bottom = 272.0
 theme_override_font_sizes/font_size = 96
-text = "Work"
 script = ExtResource("2_7ycvg")
+
+[node name="WorkRichTextLabel" type="RichTextLabel" parent="Buttons/Work Button"]
+layout_mode = 0
+offset_right = 253.0
+offset_bottom = 140.0
+mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 96
+bbcode_enabled = true
+text = "[workEffect]Work[/workEffect]"
+script = ExtResource("3_qwutr")
 
 [node name="Play Button" type="Button" parent="Buttons"]
 offset_left = -139.0
@@ -58,8 +71,17 @@ offset_top = 133.0
 offset_right = 115.0
 offset_bottom = 273.0
 theme_override_font_sizes/font_size = 96
-text = "Play"
 script = ExtResource("3_wr18j")
+
+[node name="PlayRichTextLabel" type="RichTextLabel" parent="Buttons/Play Button"]
+layout_mode = 0
+offset_right = 253.0
+offset_bottom = 140.0
+mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 96
+bbcode_enabled = true
+text = "[playEffect]Play[/playEffect]"
+script = ExtResource("5_qwutr")
 
 [node name="Sleep Button" type="Button" parent="Buttons"]
 offset_left = 235.0
@@ -67,8 +89,17 @@ offset_top = 133.0
 offset_right = 489.0
 offset_bottom = 273.0
 theme_override_font_sizes/font_size = 96
-text = "Sleep"
 script = ExtResource("4_qwutr")
+
+[node name="SleepRichTextLabel" type="RichTextLabel" parent="Buttons/Sleep Button"]
+layout_mode = 0
+offset_right = 253.0
+offset_bottom = 140.0
+mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 96
+bbcode_enabled = true
+text = "[sleepEffect]Sleep[/sleepEffect]"
+script = ExtResource("7_671wp")
 
 [node name="Lables" type="Node" parent="."]
 
