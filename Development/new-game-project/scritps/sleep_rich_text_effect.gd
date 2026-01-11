@@ -4,7 +4,10 @@ var label:RichTextLabel
 var bbcode := "sleepEffect"
 
 func _process_custom_fx(char_fx: CharFXTransform):
-	if(label is RichTextLabel):
-		char_fx.color.g = label.temp.gesundheit/100
-		
+	var tSSleep:float = clampf(label.temp.ticksSinceSleep, 0, 130)
+	if(tSSleep>30):
+		char_fx.color.a = clampf((tSSleep)/100, 0, 1)
+	else:
+		char_fx.color.a = 0.3
+	
 	

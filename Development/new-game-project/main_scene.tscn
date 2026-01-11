@@ -42,6 +42,7 @@ g_modStress = SubResource("Curve_wr18j")
 s_modDead = SubResource("Curve_qwutr")
 s_modGesundheit = SubResource("Curve_671wp")
 time_Hour = 8
+ticksSinceSleep = 25
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
