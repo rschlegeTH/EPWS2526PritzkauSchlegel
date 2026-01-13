@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dmq5qw7b8ovi1"]
+[gd_scene load_steps=21 format=3 uid="uid://dmq5qw7b8ovi1"]
 
 [ext_resource type="Script" uid="uid://5f8rgbug8fqr" path="res://scritps/days.gd" id="1_8mm7a"]
 [ext_resource type="PackedScene" uid="uid://001sx3h20shs" path="res://variablen_manager.tscn" id="1_hq1ik"]
@@ -12,9 +12,12 @@
 [ext_resource type="Script" uid="uid://d24isyeimle14" path="res://scritps/health.gd" id="5_7ycvg"]
 [ext_resource type="Script" uid="uid://trb6bkry4npk" path="res://scritps/play_rich_text_label.gd" id="5_qwutr"]
 [ext_resource type="Script" uid="uid://bx3oit2pd0xot" path="res://scritps/sleep_rich_text_label.gd" id="7_671wp"]
+[ext_resource type="Script" uid="uid://4kvqfpelv0xf" path="res://endscreen.gd" id="13_mo76n"]
+[ext_resource type="Script" uid="uid://cboeeqahucrb3" path="res://win_or_lose.gd" id="14_42l1d"]
+[ext_resource type="Script" uid="uid://cbkp11y6ficih" path="res://win_or_lose_disc.gd" id="15_2jcla"]
 
 [sub_resource type="Curve" id="Curve_7ycvg"]
-_data = [Vector2(0.33461538, 0.5), 0.0, 0.6377584, 0, 0, Vector2(1, 1), 1.162578, 0.0, 1, 0]
+_data = [Vector2(0.35361215, 0.5), 0.0, 0.6377584, 0, 0, Vector2(1, 1), 0.77352947, 0.0, 1, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_wr18j"]
@@ -200,6 +203,37 @@ offset_bottom = 94.0
 theme_override_font_sizes/font_size = 64
 text = "0%"
 script = ExtResource("5_7ycvg")
+
+[node name="Endscreen" type="Polygon2D" parent="."]
+z_index = 1
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-610, -345, -600, 341, 588, 339, 618, -349)
+script = ExtResource("13_mo76n")
+
+[node name="Time is up" type="Label" parent="Endscreen"]
+z_index = 10
+offset_left = -260.0
+offset_top = -169.0
+offset_right = 235.0
+offset_bottom = -81.0
+theme_override_font_sizes/font_size = 64
+text = "Your Time is up!"
+
+[node name="Win or Lose" type="Label" parent="Endscreen"]
+offset_left = -292.0
+offset_top = -87.0
+offset_right = -252.0
+offset_bottom = 88.0
+theme_override_font_sizes/font_size = 128
+script = ExtResource("14_42l1d")
+
+[node name="Win or Lose disc" type="Label" parent="Endscreen"]
+offset_left = -364.0
+offset_top = 119.0
+offset_right = -324.0
+offset_bottom = 164.0
+theme_override_font_sizes/font_size = 32
+script = ExtResource("15_2jcla")
 
 [connection signal="timeout" from="UpdateTimer" to="Variablen-Manager" method="_on_timer_timeout"]
 [connection signal="pressed" from="Buttons/Work Button" to="Buttons/Work Button" method="_on_pressed"]

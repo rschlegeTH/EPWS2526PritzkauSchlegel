@@ -85,12 +85,18 @@ func addStress(Stress_Inc:float = 10) -> void:
 	
 ## Buttone
 func workButton () -> void:
+	if(dead >= DEADLINE):
+		return
 	print("work")
 	work()
 func sleepButton () -> void:
+	if(dead >= DEADLINE):
+		return
 	print("sleep")
 	sleep()
 func gameButton () -> void:
+	if(dead >= DEADLINE):
+		return
 	print("game")
 	playGame()
 
@@ -132,8 +138,6 @@ func increase_Time(time_Inc:int = 0) -> void:
 			calcStress()
 			calcProductitvity()
 			ticksSinceSleep = ticksSinceSleep + 1
-	if(dead == DEADLINE): #Deadline könnte um 23:55 getriggert werden, statt um 00:00
-		print("Deadline")
 		
 	#if(time_Inc == 0): ## Normaler Fortschritt der Zeit
 		#if(time_Minutes < 60-MINUTETICK):
@@ -164,8 +168,19 @@ func increase_Time(time_Inc:int = 0) -> void:
 	#if(dead == DEADLINE): #Deadline könnte um 23:55 getriggert werden, statt um 00:00
 		#print("Deadline")
 
+## Wird zur berechnung des Spielendes benutzt, ob der Spieler gewonnen hat oder nicht
+func calcEnding() -> int:
+	if(dead < DEADLINE):
+		return 0 ## Das Spiel ist noch nicht zuende
+	if (completion < 100.0):
+		return 1 ## Der Spieler hat es nicht geschafft die Aufgaben fertig zu stellen
+	return 2 ## Der Spieler hat es geschafft die Aufgaben fertig zu stellen
+
 ## Wird Jede Sekunde vom UpdateTimer-Signal ausgelöst und führt alle Kalkulationen durch
 func _on_timer_timeout() -> void:
+	if(dead >= DEADLINE): #Deadline könnte um 23:55 getriggert werden, statt um 00:00
+		print("Deadline")
+		return
 	calcGes()
 	calcStress()
 	calcProductitvity()
