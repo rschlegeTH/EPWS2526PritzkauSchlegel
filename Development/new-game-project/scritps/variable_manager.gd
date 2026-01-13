@@ -16,8 +16,9 @@ extends Node
 # Zeit für die Uhrzeit
 const  MINUTETICK: int = 5
 @export_group("Zeit", "time")
-@export_range(0,60-MINUTETICK, MINUTETICK) var time_Minutes:int = 0 ## Der Minutenteil der Uhrzeit.
-@export_range(0,23) var time_Hour:int = 0 ## Der Stundenanteil der Uhrzeit.
+@export var totalGameTicks: int = 0 ## Die Anzahl der gesammt verstrichenden Game Ticks
+@export var time_Hour:int = 0 ## Der Stundenanteil der Uhrzeit.
+@export var time_Minutes:int = 0 ## Der Minutenteil der Uhrzeit.
 # Deadline-Segment der Zeit
 var dead: int = 1 ## Verbleibende Zeit zur deadline, zählt aufwärts, wichtig für calcStress, da höherer Wert = höherer Stresszuwachs
 const DEADLINE: int = 6 ## Wert, welchen dead erreichen muss, um die deadline auszulösen
@@ -97,7 +98,7 @@ func gameButton () -> void:
 func work(time_spent:int = 4, standardIncrease: float = 2) -> void: # standardIncrease beschreibt wie viel prozent Arbeit der Spieler pro Stunde schafft
 	@warning_ignore("narrowing_conversion") addCompletion(time_spent * standardIncrease)
 	addStress(time_spent)
-	increase_Time(time_spent)
+	increase_Time(floor(time_spent * 60 / MINUTETICK))
 
 ## Schlafen, erhöht Gesundheitswert abhängig von der verbrauchten Zeit und verringert die Zeit um time_spent. standardIncrease beschreibt den Gesundheitsgewinn pro Stunde.
 func sleep(time_spent:int = 8, standardIncrease: float = 3.75 ) -> void:
@@ -105,7 +106,7 @@ func sleep(time_spent:int = 8, standardIncrease: float = 3.75 ) -> void:
 		print("not tired yet")
 		return
 	addGesundheit(time_spent * standardIncrease)
-	increase_Time(time_spent)
+	increase_Time(floor(time_spent * 60 / MINUTETICK))
 	if(time_spent < 6):
 		@warning_ignore("integer_division") ticksSinceSleep = (ticksSinceSleep/time_spent) 
 	else:
@@ -115,42 +116,58 @@ func sleep(time_spent:int = 8, standardIncrease: float = 3.75 ) -> void:
 ## Wird bei drücken des "Play"-Buttons ausgeführt.
 func playGame(time_spent: int=4, standardIncrease: float = 1.5 ) -> void:
 	addStress(-(time_spent * standardIncrease))
-	increase_Time(time_spent)
+	increase_Time(floor(time_spent * 60 / MINUTETICK))
 
 ## Uhrzeit erhöhen um einen bestimmten Stundend-Wert, sollte keine Wert übergeben werden oder der Wert 0 sein, wird die Zeit um 5 min erhöht.
 func increase_Time(time_Inc:int = 0) -> void:
-	if(time_Inc == 0): ## Normaler Fortschritt der Zeit
-		if(time_Minutes < 60-MINUTETICK):
-			time_Minutes = time_Minutes + MINUTETICK
-		elif(time_Hour < 23):
-			time_Minutes = 0
-			time_Hour = time_Hour + 1
-		else:
-			time_Minutes = 0
-			time_Hour = 0
-			dead = dead + 1
-	elif((time_Hour + time_Inc) < 23): ## Aktivität findet in einem Tag statt
-		time_Hour = time_Hour + time_Inc
-		for n in time_Inc: ## Ein Game tick pro Stunde der Aktivität ausführen
+	totalGameTicks = totalGameTicks + time_Inc
+	var totalMinutes: int = totalGameTicks * MINUTETICK
+	var totalHours: int = floor(totalMinutes / 60)
+	var totalDays: int = floor(totalHours / 24)
+	time_Minutes = totalMinutes % 60
+	time_Hour = totalHours % 24
+	dead = clamp(1 + totalDays, 0, 6)
+	for n in time_Inc: ## Ein Game tick pro Stunde der Aktivität ausführen
 			calcGes()
 			calcStress()
 			calcProductitvity()
-			@warning_ignore("integer_division") ticksSinceSleep = ticksSinceSleep + 60/MINUTETICK # 60 min durch den Tickwert
-	elif(dead != DEADLINE): ## Aktivität geht in den nächsten Tag
-		time_Hour = time_Hour + time_Inc - 24
-		dead = dead + 1
-		for n in time_Inc: ## Ein Game tick pro Stunde der Aktivität ausführen
-			calcGes()
-			calcStress()
-			calcProductitvity()
-			@warning_ignore("integer_division") ticksSinceSleep = ticksSinceSleep + 60/MINUTETICK # 60 min durch den Tickwert
+			ticksSinceSleep = ticksSinceSleep + 1
 	if(dead == DEADLINE): #Deadline könnte um 23:55 getriggert werden, statt um 00:00
 		print("Deadline")
+		
+	#if(time_Inc == 0): ## Normaler Fortschritt der Zeit
+		#if(time_Minutes < 60-MINUTETICK):
+			#time_Minutes = time_Minutes + MINUTETICK
+		#elif(time_Hour < 23):
+			#time_Minutes = 0
+			#time_Hour = time_Hour + 1
+		#else:
+			#time_Minutes = 0
+			#time_Hour = 0
+			#dead = dead + 1
+	#elif((time_Hour + time_Inc) < 23): ## Aktivität findet in einem Tag statt
+		#time_Hour = time_Hour + time_Inc
+		#for n in time_Inc: ## Ein Game tick pro Stunde der Aktivität ausführen
+			#calcGes()
+			#calcStress()
+			#calcProductitvity()
+			#@warning_ignore("integer_division") ticksSinceSleep = ticksSinceSleep + 60/MINUTETICK # 60 min durch den Tickwert
+	#elif(dead != DEADLINE): ## Aktivität geht in den nächsten Tag
+		#time_Inc = time_Hour + time_Inc - 24
+		#time_Hour = time_Inc
+		#dead = dead + 1
+		#for n in time_Inc: ## Ein Game tick pro Stunde der Aktivität ausführen
+			#calcGes()
+			#calcStress()
+			#calcProductitvity()
+			#@warning_ignore("integer_division") ticksSinceSleep = ticksSinceSleep + 60/MINUTETICK # 60 min durch den Tickwert
+	#if(dead == DEADLINE): #Deadline könnte um 23:55 getriggert werden, statt um 00:00
+		#print("Deadline")
 
 ## Wird Jede Sekunde vom UpdateTimer-Signal ausgelöst und führt alle Kalkulationen durch
 func _on_timer_timeout() -> void:
 	calcGes()
 	calcStress()
 	calcProductitvity()
-	increase_Time()
+	increase_Time(1)
 	ticksSinceSleep = ticksSinceSleep + 1
