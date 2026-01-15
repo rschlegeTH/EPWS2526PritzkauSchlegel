@@ -100,26 +100,26 @@ func gameButton () -> void:
 ## Erhöht den Arbeitsfortschritt um die investierte Zeit und verbraucht die investierte Zeit.
 func work(time_spent:int = 4, standardIncrease: float = 2) -> void: # standardIncrease beschreibt wie viel prozent Arbeit der Spieler pro Stunde schafft
 	@warning_ignore("narrowing_conversion") addCompletion(time_spent * standardIncrease)
-	addStress(time_spent)
 	@warning_ignore("integer_division") increase_Time(floor(time_spent * 60 / MINUTETICK))
+	addStress(time_spent * standardIncrease)
 
 ## Schlafen, erhöht Gesundheitswert abhängig von der verbrauchten Zeit und verringert die Zeit um time_spent. standardIncrease beschreibt den Gesundheitsgewinn pro Stunde.
-func sleep(time_spent:int = 8, standardIncrease: float = 3.75 ) -> void:
+func sleep(time_spent:int = 8, standardIncrease: float = 10 ) -> void:
 	if(ticksSinceSleep < 48):
 		print("not tired yet")
 		return
-	addGesundheit(time_spent * standardIncrease)
 	@warning_ignore("integer_division") increase_Time(floor(time_spent * 60 / MINUTETICK))
 	if(time_spent < 6):
 		@warning_ignore("integer_division") ticksSinceSleep = (ticksSinceSleep/time_spent) 
 	else:
 		ticksSinceSleep = 0
+		addGesundheit(time_spent * standardIncrease)
 	
 
 ## Wird bei drücken des "Play"-Buttons ausgeführt.
-func playGame(time_spent: int=4, standardIncrease: float = 1.5 ) -> void:
-	addStress(-(time_spent * standardIncrease))
+func playGame(time_spent: int=2, standardIncrease: float = 4 ) -> void:
 	@warning_ignore("integer_division") increase_Time(floor(time_spent * 60 / MINUTETICK))
+	addStress(-(time_spent * standardIncrease))
 
 ## Uhrzeit erhöhen um einen bestimmten Stundend-Wert, sollte keine Wert übergeben werden oder der Wert 0 sein, wird die Zeit um 5 min erhöht.
 func increase_Time(time_Inc:int = 0) -> void:
