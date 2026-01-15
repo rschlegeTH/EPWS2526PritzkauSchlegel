@@ -14,7 +14,7 @@ extends Node
 @export var productivityScale: Curve ## Kurve welche den relativen Einfluss auf completion darstellt
 
 # Zeit für die Uhrzeit
-const  MINUTETICK: int = 5
+const  MINUTETICK: int = 5 ## Dauer eines GameTicks in Minuten, also "Wie viele Minuten soll ich diesen Tick den Timer erhöhen?"
 @export_group("Zeit", "time")
 @export var totalGameTicks: int = 0 ## Die Anzahl der gesammt verstrichenden Game Ticks
 @export var time_Hour:int = 0 ## Der Stundenanteil der Uhrzeit.
@@ -24,15 +24,12 @@ var dead: int = 1 ## Verbleibende Zeit zur deadline, zählt aufwärts, wichtig f
 const DEADLINE: int = 6 ## Wert, welchen dead erreichen muss, um die deadline auszulösen
 
 # Zeit muss gezeitet werden
-
+var debug_mode := false
 # Parameter zur Kalkulation der Zeit seit Schlaf
 @export_range(0, 288) var ticksSinceSleep: int = 0 ## Die vergangenen Ticks, seit der letzten Nutzung des Schlafbuttons.
-#Sonstige Variablen
-const SDIV: float = 100 ## standerdDivider, wird für Beeinflussung der Rechnungeng verwendet und beeinflusst das Kurvenverhalten.
+#ALT Sonstige Variablen
+#const SDIV: float = 100 ## standerdDivider, wird für Beeinflussung der Rechnungeng verwendet und beeinflusst das Kurvenverhalten.
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
 
 # Anpassen, weil g_mod < 1 und clamp immer auf 1 setzt
 ## Führt die Kalkulation des Gesundheitswertes aus.
@@ -44,8 +41,8 @@ func calcGes() -> void:
 	ticksSinceSleepPortion = g_modTicksSinceSleep.sample(ticksSinceSleep/(48.0*60.0/MINUTETICK)) # Berechnet den Anteil von ticksSinceSleep auf g_mod. Begrenzt auf maximal 48 stunden
 	stessPortion = g_modStress.sample(stress/100.0) # Berechnet den Anteil von stress auf g_mod
 	
-	g_mod = -(ticksSinceSleepPortion + stessPortion - 1)
-	g_mod = clampf(g_mod, -1, 1) #Ist 1 ein guter Wert für einen Clamp?
+	g_mod = -(ticksSinceSleepPortion + stessPortion - 1) # Rechnung
+	g_mod = clampf(g_mod, -1, 1) # Clampen
 	gesundheit = clamp(gesundheit + g_mod, 0, 100)
 
 ## Führt die Kalkulation des Stresswertes aus
@@ -54,11 +51,11 @@ func calcStress() -> void:
 	var deadPortion: float = 0.0 ## Der Anteil den dead auf s_mod hat
 	var gesundheitPortion: float = 0.0 ## Der Anteil den gesundheit auf s_mod hat
 	
-	deadPortion = s_modDead.sample((100.0-completion) * (dead-1) / 500.0)
-	gesundheitPortion = s_modGesundheit.sample(1.0-gesundheit/100.0)
+	deadPortion = s_modDead.sample((100.0-completion) * (dead-1) / 500.0) # Kurvenwert entnehmen
+	gesundheitPortion = s_modGesundheit.sample(1.0-gesundheit/100.0) # Kurvenwert entnehmen
 	
 	s_mod = deadPortion + gesundheitPortion - 1
-	#s_mod = (-gesundheit)/SDIV + ((-completion+100) * dead)/SDIV #deadline Wert(dead) beobachten
+	#s_mod = (-gesundheit)/SDIV + ((-completion+100) * dead)/SDIV #deadline Wer   t(dead) beobachten (SDIV = 100)
 	s_mod = clampf(s_mod, -1, 1) # s_mod darf sich nur zwischen -1 bis 1 befinden und wird auf diese Limitiert
 	stress = clamp(stress + s_mod, 0, 100) # Werte anwenden
 
@@ -104,7 +101,7 @@ func gameButton () -> void:
 func work(time_spent:int = 4, standardIncrease: float = 2) -> void: # standardIncrease beschreibt wie viel prozent Arbeit der Spieler pro Stunde schafft
 	@warning_ignore("narrowing_conversion") addCompletion(time_spent * standardIncrease)
 	addStress(time_spent)
-	increase_Time(floor(time_spent * 60 / MINUTETICK))
+	@warning_ignore("integer_division") increase_Time(floor(time_spent * 60 / MINUTETICK))
 
 ## Schlafen, erhöht Gesundheitswert abhängig von der verbrauchten Zeit und verringert die Zeit um time_spent. standardIncrease beschreibt den Gesundheitsgewinn pro Stunde.
 func sleep(time_spent:int = 8, standardIncrease: float = 3.75 ) -> void:
@@ -112,7 +109,7 @@ func sleep(time_spent:int = 8, standardIncrease: float = 3.75 ) -> void:
 		print("not tired yet")
 		return
 	addGesundheit(time_spent * standardIncrease)
-	increase_Time(floor(time_spent * 60 / MINUTETICK))
+	@warning_ignore("integer_division") increase_Time(floor(time_spent * 60 / MINUTETICK))
 	if(time_spent < 6):
 		@warning_ignore("integer_division") ticksSinceSleep = (ticksSinceSleep/time_spent) 
 	else:
@@ -122,14 +119,14 @@ func sleep(time_spent:int = 8, standardIncrease: float = 3.75 ) -> void:
 ## Wird bei drücken des "Play"-Buttons ausgeführt.
 func playGame(time_spent: int=4, standardIncrease: float = 1.5 ) -> void:
 	addStress(-(time_spent * standardIncrease))
-	increase_Time(floor(time_spent * 60 / MINUTETICK))
+	@warning_ignore("integer_division") increase_Time(floor(time_spent * 60 / MINUTETICK))
 
 ## Uhrzeit erhöhen um einen bestimmten Stundend-Wert, sollte keine Wert übergeben werden oder der Wert 0 sein, wird die Zeit um 5 min erhöht.
 func increase_Time(time_Inc:int = 0) -> void:
 	totalGameTicks = totalGameTicks + time_Inc
 	var totalMinutes: int = totalGameTicks * MINUTETICK
-	var totalHours: int = floor(totalMinutes / 60)
-	var totalDays: int = floor(totalHours / 24)
+	@warning_ignore("integer_division") var totalHours: int = floor(totalMinutes / 60) # 60 = dauer einer Stunde in Minuten
+	@warning_ignore("integer_division") var totalDays: int = floor(totalHours / 24) # 24 = dauer eines Tages in Stunden
 	time_Minutes = totalMinutes % 60
 	time_Hour = totalHours % 24
 	dead = clamp(1 + totalDays, 0, 6)
@@ -181,8 +178,9 @@ func _on_timer_timeout() -> void:
 	if(dead >= DEADLINE): #Deadline könnte um 23:55 getriggert werden, statt um 00:00
 		print("Deadline")
 		return
-	calcGes()
-	calcStress()
-	calcProductitvity()
-	increase_Time(1)
-	ticksSinceSleep = ticksSinceSleep + 1
+	if(!debug_mode):
+		increase_Time(1)
+	
+func _input(event):
+	if event.is_action_pressed("debug_pause"):
+		debug_mode = !debug_mode
