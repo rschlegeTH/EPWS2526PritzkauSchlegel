@@ -114,6 +114,7 @@ func sleep(time_spent:int = 8, standardIncrease: float = 10 ) -> void:
 	else:
 		ticksSinceSleep = 0
 		addGesundheit(time_spent * standardIncrease)
+		addStress(-(time_spent))
 	
 
 ## Wird bei drücken des "Play"-Buttons ausgeführt.
