@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dmq5qw7b8ovi1"]
+[gd_scene load_steps=22 format=3 uid="uid://dmq5qw7b8ovi1"]
 
 [ext_resource type="Script" uid="uid://5f8rgbug8fqr" path="res://scritps/days.gd" id="1_8mm7a"]
 [ext_resource type="PackedScene" uid="uid://001sx3h20shs" path="res://variablen_manager.tscn" id="1_hq1ik"]
@@ -17,7 +17,7 @@
 [ext_resource type="Script" uid="uid://cbkp11y6ficih" path="res://win_or_lose_disc.gd" id="15_2jcla"]
 
 [sub_resource type="Curve" id="Curve_7ycvg"]
-_data = [Vector2(0.34600762, 0.50075305), 0.0, 0.68272454, 0, 0, Vector2(1, 1), 0.76338345, 0.0, 1, 0]
+_data = [Vector2(0.3032787, 0.50075305), 0.0, 0.68272454, 0, 0, Vector2(1, 1), 0.7165662, 0.0, 1, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_wr18j"]
@@ -29,8 +29,12 @@ _data = [Vector2(0, 0.5), 0.0, 0.3165273, 0, 0, Vector2(1, 1), 0.5, 0.0, 1, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_671wp"]
-_data = [Vector2(0, 0.44108278), 0.0, 0.0015505644, 0, 0, Vector2(1, 1), 0.5589172, 0.0, 1, 0]
+_data = [Vector2(0, 0.4263239), 0.0, 0.34776878, 0, 0, Vector2(1, 1), 0.5736761, 0.0, 1, 0]
 point_count = 2
+
+[sub_resource type="Curve" id="Curve_2jcla"]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(0.030737706, 0.64082885), -0.49936002, -0.49936002, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="Curve" id="Curve_mo76n"]
 _data = [Vector2(0, 0.011295319), 0.0, 0.29484877, 0, 0, Vector2(1, 1), 1.5425423, 0.0, 0, 0]
@@ -43,10 +47,12 @@ autostart = true
 
 [node name="Variablen-Manager" parent="." instance=ExtResource("1_hq1ik")]
 unique_name_in_owner = true
+stress = 10.0
 g_modTicksSinceSleep = SubResource("Curve_7ycvg")
 g_modStress = SubResource("Curve_wr18j")
 s_modDead = SubResource("Curve_qwutr")
 s_modGesundheit = SubResource("Curve_671wp")
+productivityTSS = SubResource("Curve_2jcla")
 productivityScale = SubResource("Curve_mo76n")
 totalGameTicks = 96
 time_Hour = 8

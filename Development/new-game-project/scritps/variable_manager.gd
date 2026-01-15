@@ -11,6 +11,7 @@ extends Node
 @export var g_modStress: Curve ## Kurve welche den Einfluss von stress auf g_mod beschreibt
 @export var s_modDead: Curve ## Kurve welche den Einfluss von dead auf s_mod beschreibt
 @export var s_modGesundheit: Curve ## Kurve welche den Einfluss von gesundheit auf s_mod beschreibt
+@export var productivityTSS: Curve ## Kurve welche den Einfluss von der zeit seit dem aufstehen auf die produktivität beschreibt
 @export var productivityScale: Curve ## Kurve welche den relativen Einfluss auf completion darstellt
 
 # Zeit für die Uhrzeit
@@ -28,8 +29,6 @@ var debug_mode := false
 # Parameter zur Kalkulation der Zeit seit Schlaf
 @export_range(0, 288) var ticksSinceSleep: int = 0 ## Die vergangenen Ticks, seit der letzten Nutzung des Schlafbuttons.
 #ALT Sonstige Variablen
-#const SDIV: float = 100 ## standerdDivider, wird für Beeinflussung der Rechnungeng verwendet und beeinflusst das Kurvenverhalten.
-
 
 # Anpassen, weil g_mod < 1 und clamp immer auf 1 setzt
 ## Führt die Kalkulation des Gesundheitswertes aus.
@@ -61,7 +60,8 @@ func calcStress() -> void:
 
 ## Produktivitäsparameter berechnen
 func calcProductitvity() -> void: # Überarbeiten??? Berechnet die Produktivität, Formel könnte überarbeitet werden
-	productivity = clampf(gesundheit * 0.5 + (-stress + 100) * 0.5 , 0, 100)
+	var timeSinceSleepPortion: float = productivityTSS.sample(ticksSinceSleep/(48.0*60.0/MINUTETICK)) * 2
+	productivity = clampf(gesundheit * 0.5 + (-stress + 100) * 0.5 * timeSinceSleepPortion, 0, 100)
 
 ## Erhöht den Completion-Wert um 1 oder den Eingabewert
 func addCompletion(completionGrowth) -> void:
@@ -132,40 +132,12 @@ func increase_Time(time_Inc:int = 0) -> void:
 	time_Hour = totalHours % 24
 	dead = clamp(1 + totalDays, 0, 6)
 	for n in time_Inc: ## Ein Game tick pro Stunde der Aktivität ausführen
-			calcGes()
-			calcStress()
-			calcProductitvity()
-			ticksSinceSleep = ticksSinceSleep + 1
-		
-	#if(time_Inc == 0): ## Normaler Fortschritt der Zeit
-		#if(time_Minutes < 60-MINUTETICK):
-			#time_Minutes = time_Minutes + MINUTETICK
-		#elif(time_Hour < 23):
-			#time_Minutes = 0
-			#time_Hour = time_Hour + 1
-		#else:
-			#time_Minutes = 0
-			#time_Hour = 0
-			#dead = dead + 1
-	#elif((time_Hour + time_Inc) < 23): ## Aktivität findet in einem Tag statt
-		#time_Hour = time_Hour + time_Inc
-		#for n in time_Inc: ## Ein Game tick pro Stunde der Aktivität ausführen
-			#calcGes()
-			#calcStress()
-			#calcProductitvity()
-			#@warning_ignore("integer_division") ticksSinceSleep = ticksSinceSleep + 60/MINUTETICK # 60 min durch den Tickwert
-	#elif(dead != DEADLINE): ## Aktivität geht in den nächsten Tag
-		#time_Inc = time_Hour + time_Inc - 24
-		#time_Hour = time_Inc
-		#dead = dead + 1
-		#for n in time_Inc: ## Ein Game tick pro Stunde der Aktivität ausführen
-			#calcGes()
-			#calcStress()
-			#calcProductitvity()
-			#@warning_ignore("integer_division") ticksSinceSleep = ticksSinceSleep + 60/MINUTETICK # 60 min durch den Tickwert
-	#if(dead == DEADLINE): #Deadline könnte um 23:55 getriggert werden, statt um 00:00
-		#print("Deadline")
-
+		calcGes()
+		calcStress()
+		calcProductitvity()
+		ticksSinceSleep = ticksSinceSleep + 1
+	print("Ges: " + str(gesundheit).pad_decimals(2) + "%" + " Stress: " + str(stress).pad_decimals(2) + "%")
+	
 ## Wird zur berechnung des Spielendes benutzt, ob der Spieler gewonnen hat oder nicht
 func calcEnding() -> int:
 	if(dead < DEADLINE):
