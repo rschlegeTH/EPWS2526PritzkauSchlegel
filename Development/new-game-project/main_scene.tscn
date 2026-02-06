@@ -211,6 +211,7 @@ text = "0%"
 script = ExtResource("5_7ycvg")
 
 [node name="Endscreen" type="Polygon2D" parent="."]
+visible = false
 z_index = 1
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-610, -345, -600, 341, 588, 339, 618, -349)
