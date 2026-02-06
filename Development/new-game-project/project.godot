@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="EP-Game"
-run/main_scene="uid://dmq5qw7b8ovi1"
+run/main_scene="uid://txamr71ux6xl"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 

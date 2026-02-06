@@ -55,7 +55,7 @@ size = Vector2(128.00003, 125.956024)
 size = Vector2(128.63052, 128.76645)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uvgfp"]
-distance = -65.38271
+distance = -66.44444
 
 [node name="main_scene" type="Node2D"]
 
@@ -87,7 +87,6 @@ shape = SubResource("CircleShape2D_vl18p")
 texture = ExtResource("16_v0yip")
 
 [node name="Room" type="Sprite2D" parent="."]
-position = Vector2(-3.272295e-05, 0)
 scale = Vector2(9, 5.0625)
 texture = ExtResource("16_v0yip")
 
@@ -189,28 +188,33 @@ scale = Vector2(0.16666664, 0.020447543)
 texture = ExtResource("16_v0yip")
 
 [node name="RoomBorder" type="Node2D" parent="Room"]
+position = Vector2(0.22222221, 0)
 
 [node name="BottomBorder" type="StaticBody2D" parent="Room/RoomBorder"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room/RoomBorder/BottomBorder"]
+position = Vector2(0, -0.9876543)
 shape = SubResource("WorldBoundaryShape2D_uvgfp")
 
 [node name="TopBorder" type="StaticBody2D" parent="Room/RoomBorder"]
 rotation = 3.1415927
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room/RoomBorder/TopBorder"]
+position = Vector2(-8.634348e-08, -0.9876543)
 shape = SubResource("WorldBoundaryShape2D_uvgfp")
 
 [node name="LeftBorder" type="StaticBody2D" parent="Room/RoomBorder"]
 rotation = 1.5707964
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room/RoomBorder/LeftBorder"]
+position = Vector2(-3.885457e-08, -0.8888889)
 shape = SubResource("WorldBoundaryShape2D_uvgfp")
 
 [node name="RightBorder" type="StaticBody2D" parent="Room/RoomBorder"]
 rotation = -1.5707964
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room/RoomBorder/RightBorder"]
+position = Vector2(4.856821e-08, -1.1111112)
 shape = SubResource("WorldBoundaryShape2D_uvgfp")
 
 [node name="Lables" type="Node" parent="."]
