@@ -29,7 +29,7 @@ var debug_mode := false
 # Parameter zur Kalkulation der Zeit seit Schlaf
 @export_range(0, 288) var ticksSinceSleep: int = 0 ## Die vergangenen Ticks, seit der letzten Nutzung des Schlafbuttons.
 #ALT Sonstige Variablen
-
+var interactionObject: int = 0
 # Anpassen, weil g_mod < 1 und clamp immer auf 1 setzt
 ## Führt die Kalkulation des Gesundheitswertes aus.
 func calcGes() -> void:
@@ -157,3 +157,11 @@ func _on_timer_timeout() -> void:
 func _input(event):
 	if event.is_action_pressed("debug_pause"):
 		debug_mode = !debug_mode
+	if (event.is_action_pressed("interact") &&(interactionObject != 0)):
+		if interactionObject == 1:
+			sleepButton()
+		elif  interactionObject == 2:
+			gameButton()
+		elif interactionObject == 3:
+			workButton()
+		
