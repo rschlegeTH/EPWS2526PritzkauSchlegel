@@ -141,9 +141,9 @@ shape = SubResource("CircleShape2D_vl18p")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 position = Vector2(0, -60.095)
-scale = Vector2(0.34903687, 0.2984905)
+scale = Vector2(0.349, 0.298)
 sprite_frames = SubResource("SpriteFrames_jo7i1")
-animation = &"stressed"
+autoplay = "default"
 
 [node name="Room" type="Node2D" parent="."]
 position = Vector2(-112.5, 0)

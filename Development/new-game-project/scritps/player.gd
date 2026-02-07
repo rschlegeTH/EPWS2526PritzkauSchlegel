@@ -3,8 +3,18 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
+@onready var anim := $AnimatedSprite2D
+@onready var vMan := %"Variablen-Manager"
 
-
+func _process(_delta: float) -> void:
+	if((vMan.stress > 50) && (vMan.gesundheit < 50)):
+		anim.play("tired and stressed")
+	elif(vMan.stress > 50):
+		anim.play("stressed")
+	elif(vMan.gesundheit < 50):
+		anim.play("tired")
+	else:
+		anim.play("default")
 func _physics_process(_delta: float) -> void:
 	# Add the gravity.
 	
