@@ -6,9 +6,9 @@
 [ext_resource type="Script" uid="uid://trb6bkry4npk" path="res://scritps/play_rich_text_label.gd" id="5_4lggk"]
 [ext_resource type="Script" uid="uid://bx3oit2pd0xot" path="res://scritps/sleep_rich_text_label.gd" id="7_48x2x"]
 [ext_resource type="Script" uid="uid://5f8rgbug8fqr" path="res://scritps/days.gd" id="8_woe6x"]
+[ext_resource type="Script" uid="uid://daxxgix2odybf" path="res://scritps/RoomUI/work_progress_bar.gd" id="9_k4vso"]
 [ext_resource type="Script" uid="uid://cm85b04uqbmju" path="res://scritps/time.gd" id="9_xpli3"]
-[ext_resource type="Script" uid="uid://bq1yvqe1hlial" path="res://scritps/work.gd" id="10_cri2g"]
-[ext_resource type="Script" uid="uid://d24isyeimle14" path="res://scritps/health.gd" id="12_jv2be"]
+[ext_resource type="Script" uid="uid://cpm82nwghtijw" path="res://scritps/RoomUI/health_progress_bar.gd" id="11_k4vso"]
 [ext_resource type="Script" uid="uid://ww5lfs3q7ag7" path="res://scritps/RoomUI/stress_progress_bar.gd" id="12_l7cbk"]
 [ext_resource type="Script" uid="uid://4kvqfpelv0xf" path="res://endscreen.gd" id="13_qvx3r"]
 [ext_resource type="Script" uid="uid://cboeeqahucrb3" path="res://win_or_lose.gd" id="14_78hxn"]
@@ -70,6 +70,7 @@ autostart = true
 [node name="Variablen-Manager" parent="." instance=ExtResource("1_l7cbk")]
 unique_name_in_owner = true
 stress = 61.105
+completion = 51.345
 g_modTicksSinceSleep = SubResource("Curve_7ycvg")
 g_modStress = SubResource("Curve_wr18j")
 s_modDead = SubResource("Curve_qwutr")
@@ -92,7 +93,8 @@ shape = SubResource("CircleShape2D_vl18p")
 texture = ExtResource("16_v0yip")
 
 [node name="Room" type="Sprite2D" parent="."]
-scale = Vector2(9, 5.0625)
+position = Vector2(-112.5, 0)
+scale = Vector2(7.2421875, 5.0625)
 texture = ExtResource("16_v0yip")
 
 [node name="Bett" type="StaticBody2D" parent="Room"]
@@ -225,70 +227,60 @@ shape = SubResource("WorldBoundaryShape2D_uvgfp")
 [node name="Lables" type="Node" parent="."]
 
 [node name="Days till Deadline" type="Label" parent="Lables"]
-visible = false
-offset_left = -551.0
-offset_top = -309.0
-offset_right = 2.0
-offset_bottom = -212.0
-theme_override_font_sizes/font_size = 64
+offset_left = 352.0
+offset_top = -278.0
+offset_right = 905.0
+offset_bottom = -181.0
 text = "Days till Deadline:"
 
 [node name="Days" type="Label" parent="Lables/Days till Deadline"]
-visible = false
 layout_mode = 0
-offset_left = 574.0
-offset_top = -1.0
-offset_right = 614.0
-offset_bottom = 87.0
-theme_override_font_sizes/font_size = 64
+offset_left = 144.0
+offset_top = 1.0
+offset_right = 184.0
+offset_bottom = 89.0
 text = "0"
 script = ExtResource("8_woe6x")
 
 [node name="current time" type="Label" parent="Lables"]
-visible = false
-offset_left = -551.0
-offset_top = -223.0
-offset_right = 2.0
-offset_bottom = -126.0
-theme_override_font_sizes/font_size = 64
+offset_left = 353.0
+offset_top = -314.0
+offset_right = 906.0
+offset_bottom = -217.0
 text = "Current time:"
 
 [node name="Time" type="Label" parent="Lables/current time"]
-visible = false
 layout_mode = 0
-offset_left = 430.0
+offset_left = 112.0
 offset_top = 2.0
-offset_right = 594.0
+offset_right = 276.0
 offset_bottom = 90.0
-theme_override_font_sizes/font_size = 64
 text = "00:00"
 script = ExtResource("9_xpli3")
 
 [node name="Work completed" type="Label" parent="Lables"]
-visible = false
-offset_left = -551.0
-offset_top = -129.0
-offset_right = 2.0
-offset_bottom = -32.0
-theme_override_font_sizes/font_size = 64
+offset_left = 352.0
+offset_top = 24.0
+offset_right = 576.0
+offset_bottom = 121.0
+theme_override_font_sizes/font_size = 26
 text = "Work completed:"
 
-[node name="Work" type="Label" parent="Lables/Work completed"]
-visible = false
+[node name="ProgressBar" type="ProgressBar" parent="Lables/Work completed"]
 layout_mode = 0
-offset_left = 540.0
-offset_top = 7.0
-offset_right = 580.0
-offset_bottom = 95.0
-theme_override_font_sizes/font_size = 64
-text = "0%"
-script = ExtResource("10_cri2g")
+offset_left = 10.0
+offset_top = 52.0
+offset_right = 202.0
+offset_bottom = 89.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_k4vso")
+theme_override_styles/fill = SubResource("StyleBoxFlat_l7cbk")
+script = ExtResource("9_k4vso")
 
 [node name="Stress level" type="Label" parent="Lables"]
-offset_left = 354.0
-offset_top = -300.0
-offset_right = 562.0
-offset_bottom = -178.0
+offset_left = 353.0
+offset_top = -244.0
+offset_right = 561.0
+offset_bottom = -122.0
 theme_override_font_sizes/font_size = 64
 text = "Stress:"
 
@@ -303,24 +295,22 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_l7cbk")
 script = ExtResource("12_l7cbk")
 
 [node name="Health level" type="Label" parent="Lables"]
-visible = false
-offset_left = -551.0
-offset_top = 32.0
-offset_right = 2.0
-offset_bottom = 129.0
+offset_left = 352.0
+offset_top = -109.0
+offset_right = 575.0
+offset_bottom = 13.0
 theme_override_font_sizes/font_size = 64
 text = "Health:"
 
-[node name="Health" type="Label" parent="Lables/Health level"]
-visible = false
+[node name="ProgressBar" type="ProgressBar" parent="Lables/Health level"]
 layout_mode = 0
-offset_left = 235.0
-offset_top = 6.0
-offset_right = 275.0
-offset_bottom = 94.0
-theme_override_font_sizes/font_size = 64
-text = "0%"
-script = ExtResource("12_jv2be")
+offset_left = 8.0
+offset_top = 77.0
+offset_right = 200.0
+offset_bottom = 114.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_k4vso")
+theme_override_styles/fill = SubResource("StyleBoxFlat_l7cbk")
+script = ExtResource("11_k4vso")
 
 [node name="Endscreen" type="Polygon2D" parent="."]
 visible = false
