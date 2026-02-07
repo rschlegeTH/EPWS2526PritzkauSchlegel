@@ -1,5 +1,5 @@
 extends Button
-@onready var temp = %"Variablen-Manager"
+@onready var vMan = %"Variablen-Manager"
 
 func _on_pressed() -> void:
-	temp.workButton()
+	vMan.workButton()

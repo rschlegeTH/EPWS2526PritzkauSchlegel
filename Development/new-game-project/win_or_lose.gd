@@ -1,5 +1,5 @@
 extends Label
-@onready var temp = %"Variablen-Manager"
+@onready var vMan = %"Variablen-Manager"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -8,7 +8,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if (temp.calcEnding() <= 1):
+	if (vMan.calcEnding() <= 1):
 		$".".text = "You Lost!"
 		return
 	$".".text = "You Won!!"

@@ -69,7 +69,7 @@ autostart = true
 
 [node name="Variablen-Manager" parent="." instance=ExtResource("1_l7cbk")]
 unique_name_in_owner = true
-stress = 61.105
+stress = 10.0
 g_modTicksSinceSleep = SubResource("Curve_7ycvg")
 g_modStress = SubResource("Curve_wr18j")
 s_modDead = SubResource("Curve_qwutr")
