@@ -1,14 +1,24 @@
-[gd_scene load_steps=29 format=3 uid="uid://txamr71ux6xl"]
+[gd_scene load_steps=41 format=3 uid="uid://txamr71ux6xl"]
 
 [ext_resource type="PackedScene" uid="uid://001sx3h20shs" path="res://variablen_manager.tscn" id="1_l7cbk"]
 [ext_resource type="Script" uid="uid://c2ojj45s1ubir" path="res://scritps/player.gd" id="2_uvgfp"]
+[ext_resource type="Texture2D" uid="uid://depgagjm8os56" path="res://Sprites/Character basic.png" id="3_cri2g"]
 [ext_resource type="Script" uid="uid://b8vwaq150pbxl" path="res://scritps/work_rich_text_label.gd" id="3_uvgfp"]
+[ext_resource type="Texture2D" uid="uid://b3jqbeaej4glo" path="res://Sprites/Bed.png" id="4_4lggk"]
+[ext_resource type="Texture2D" uid="uid://eaeh3rkamvkk" path="res://Sprites/Character stressed.png" id="4_fgg7d"]
 [ext_resource type="Script" uid="uid://trb6bkry4npk" path="res://scritps/play_rich_text_label.gd" id="5_4lggk"]
+[ext_resource type="Texture2D" uid="uid://bs4uyupiam6vi" path="res://Sprites/Character tired.png" id="5_jv2be"]
+[ext_resource type="Texture2D" uid="uid://cc7dfnr66iy8r" path="res://Sprites/Console.png" id="6_hehhx"]
+[ext_resource type="Texture2D" uid="uid://drj1chx1mxfhc" path="res://Sprites/Character tired and stressed.png" id="6_qvx3r"]
 [ext_resource type="Script" uid="uid://bx3oit2pd0xot" path="res://scritps/sleep_rich_text_label.gd" id="7_48x2x"]
+[ext_resource type="Texture2D" uid="uid://cgbn1rd5d3l71" path="res://Sprites/Controller.png" id="7_woe6x"]
 [ext_resource type="Script" uid="uid://5f8rgbug8fqr" path="res://scritps/days.gd" id="8_woe6x"]
+[ext_resource type="Texture2D" uid="uid://5iov6xsisf4s" path="res://Sprites/Desk.png" id="9_cri2g"]
 [ext_resource type="Script" uid="uid://daxxgix2odybf" path="res://scritps/RoomUI/work_progress_bar.gd" id="9_k4vso"]
 [ext_resource type="Script" uid="uid://cm85b04uqbmju" path="res://scritps/time.gd" id="9_xpli3"]
+[ext_resource type="Texture2D" uid="uid://b3x5aekpxtmuq" path="res://Sprites/Background.png" id="11_fgg7d"]
 [ext_resource type="Script" uid="uid://cpm82nwghtijw" path="res://scritps/RoomUI/health_progress_bar.gd" id="11_k4vso"]
+[ext_resource type="Texture2D" uid="uid://b16syya0jtmnf" path="res://Sprites/Chair.png" id="12_78hxn"]
 [ext_resource type="Script" uid="uid://ww5lfs3q7ag7" path="res://scritps/RoomUI/stress_progress_bar.gd" id="12_l7cbk"]
 [ext_resource type="Script" uid="uid://4kvqfpelv0xf" path="res://endscreen.gd" id="13_qvx3r"]
 [ext_resource type="Script" uid="uid://cboeeqahucrb3" path="res://win_or_lose.gd" id="14_78hxn"]
@@ -42,17 +52,55 @@ point_count = 2
 [sub_resource type="CircleShape2D" id="CircleShape2D_vl18p"]
 radius = 65.192024
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_jo7i1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_cri2g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_fgg7d")
+}],
+"loop": true,
+"name": &"stressed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_jv2be")
+}],
+"loop": true,
+"name": &"tired",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_qvx3r")
+}],
+"loop": true,
+"name": &"tired and stressed",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uvgfp"]
-size = Vector2(126.92207, 122)
+size = Vector2(126.92207, 183)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hehhx"]
-size = Vector2(125.84418, 53.14499)
+size = Vector2(103.66856, 53.14499)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vl18p"]
-size = Vector2(128.00003, 125.956024)
+size = Vector2(236.11655, 85.077835)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4lggk"]
-size = Vector2(128.63052, 128.76645)
+size = Vector2(102.31918, 149.2055)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ukrw"]
+size = Vector2(33.115784, 202.1277)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uvgfp"]
 distance = -66.44444
@@ -87,34 +135,46 @@ z_index = 1
 script = ExtResource("2_uvgfp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, 16.29)
+scale = Vector2(0.725, 0.725)
 shape = SubResource("CircleShape2D_vl18p")
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-texture = ExtResource("16_v0yip")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+position = Vector2(0, -60.095)
+scale = Vector2(0.34903687, 0.2984905)
+sprite_frames = SubResource("SpriteFrames_jo7i1")
+animation = &"stressed"
 
-[node name="Room" type="Sprite2D" parent="."]
+[node name="Room" type="Node2D" parent="."]
 position = Vector2(-112.5, 0)
 scale = Vector2(7.2421875, 5.0625)
-texture = ExtResource("16_v0yip")
 
 [node name="Bett" type="StaticBody2D" parent="Room"]
 position = Vector2(-37.38888, -50.962963)
 scale = Vector2(0.41232643, 0.19753087)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room/Bett"]
+z_index = 1
+position = Vector2(15.832207, 160.5)
 shape = SubResource("RectangleShape2D_uvgfp")
 
 [node name="Sprite2D" type="Sprite2D" parent="Room/Bett"]
-texture = ExtResource("16_v0yip")
+position = Vector2(91.1802, 258)
+scale = Vector2(0.21932276, 0.6018519)
+texture = ExtResource("4_4lggk")
 
 [node name="BettArea2D" type="Area2D" parent="Room/Bett"]
+z_index = 1
+position = Vector2(16.501972, 192)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room/Bett/BettArea2D"]
+z_index = 1
 position = Vector2(0, 88.427505)
 shape = SubResource("RectangleShape2D_hehhx")
 
 [node name="SleepRichTextLabel" type="RichTextLabel" parent="Room/Bett/BettArea2D"]
 visible = false
+z_index = 1
 offset_left = -62.65263
 offset_top = -50.0
 offset_right = 62.922108
@@ -130,18 +190,28 @@ script = ExtResource("7_48x2x")
 position = Vector2(-39.777775, 51.481483)
 scale = Vector2(0.16666664, 0.19328707)
 
+[node name="Controller" type="Sprite2D" parent="Room/Konsole"]
+position = Vector2(239.9094, -266.34723)
+scale = Vector2(0.54026175, 0.6131736)
+texture = ExtResource("7_woe6x")
+
 [node name="Konsole" type="Sprite2D" parent="Room/Konsole"]
-scale = Vector2(1, 0.992)
-texture = ExtResource("16_v0yip")
+z_index = 2
+position = Vector2(239.49518, -266.34726)
+scale = Vector2(0.5408451, 0.61317354)
+texture = ExtResource("6_hehhx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room/Konsole"]
-scale = Vector2(0.9999999, 0.9999999)
+z_index = 2
+position = Vector2(41.488647, 20.439087)
+scale = Vector2(0.9999999, 0.9999996)
 shape = SubResource("RectangleShape2D_vl18p")
 
 [node name="Area2D" type="Area2D" parent="Room/Konsole"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room/Konsole/Area2D"]
-position = Vector2(-0.6666665, -91.59279)
+position = Vector2(37.760498, -51.736496)
+scale = Vector2(1.71, 1)
 shape = SubResource("RectangleShape2D_hehhx")
 
 [node name="PlayRichTextLabel" type="RichTextLabel" parent="Room/Konsole/Area2D"]
@@ -158,22 +228,35 @@ vertical_alignment = 1
 script = ExtResource("5_4lggk")
 
 [node name="Arbeitsplatz" type="StaticBody2D" parent="Room"]
+z_index = 2
 position = Vector2(28.444447, 51.555557)
 scale = Vector2(0.35243058, 0.19328707)
 
+[node name="Chair" type="Sprite2D" parent="Room/Arbeitsplatz"]
+position = Vector2(-124.78606, -233.00586)
+scale = Vector2(0.3917929, 1.0219556)
+texture = ExtResource("12_78hxn")
+
 [node name="Arbeitsplatz" type="Sprite2D" parent="Room/Arbeitsplatz"]
-position = Vector2(0, -0.51098156)
-scale = Vector2(1, 0.9980038)
-texture = ExtResource("16_v0yip")
+position = Vector2(-80.31754, -266.73047)
+scale = Vector2(0.25576904, 0.61317366)
+texture = ExtResource("9_cri2g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room/Arbeitsplatz"]
-scale = Vector2(0.9999999, 0.9999999)
+position = Vector2(16.816483, -10.219513)
+scale = Vector2(0.9999999, 0.9999997)
 shape = SubResource("RectangleShape2D_4lggk")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Room/Arbeitsplatz"]
+position = Vector2(84.72058, -36.680588)
+scale = Vector2(0.9999999, 0.99999976)
+shape = SubResource("RectangleShape2D_3ukrw")
 
 [node name="Area2D" type="Area2D" parent="Room/Arbeitsplatz"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room/Arbeitsplatz/Area2D"]
-position = Vector2(0.31527132, -92.99797)
+position = Vector2(16.141796, -111.39314)
+scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_hehhx")
 
 [node name="WorkRichTextLabel" type="RichTextLabel" parent="Room/Arbeitsplatz/Area2D"]
@@ -190,6 +273,7 @@ vertical_alignment = 1
 script = ExtResource("3_uvgfp")
 
 [node name="Tür" type="Sprite2D" parent="Room"]
+visible = false
 position = Vector2(37.888897, -62.419754)
 scale = Vector2(0.16666664, 0.020447543)
 texture = ExtResource("16_v0yip")
@@ -204,6 +288,7 @@ position = Vector2(0, -0.9876543)
 shape = SubResource("WorldBoundaryShape2D_uvgfp")
 
 [node name="TopBorder" type="StaticBody2D" parent="Room/RoomBorder"]
+position = Vector2(0, 25.28)
 rotation = 3.1415927
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room/RoomBorder/TopBorder"]
@@ -211,6 +296,7 @@ position = Vector2(-8.634348e-08, -0.9876543)
 shape = SubResource("WorldBoundaryShape2D_uvgfp")
 
 [node name="LeftBorder" type="StaticBody2D" parent="Room/RoomBorder"]
+position = Vector2(6.7508087, 0)
 rotation = 1.5707964
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room/RoomBorder/LeftBorder"]
@@ -218,11 +304,18 @@ position = Vector2(-3.885457e-08, -0.8888889)
 shape = SubResource("WorldBoundaryShape2D_uvgfp")
 
 [node name="RightBorder" type="StaticBody2D" parent="Room/RoomBorder"]
+position = Vector2(-6.925, 0)
 rotation = -1.5707964
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room/RoomBorder/RightBorder"]
 position = Vector2(4.856821e-08, -1.1111112)
 shape = SubResource("WorldBoundaryShape2D_uvgfp")
+
+[node name="Ground" type="Sprite2D" parent="Room"]
+z_index = -1
+position = Vector2(0.11609745, -0.027781472)
+scale = Vector2(0.09010989, 0.11846708)
+texture = ExtResource("11_fgg7d")
 
 [node name="Lables" type="Node" parent="."]
 
