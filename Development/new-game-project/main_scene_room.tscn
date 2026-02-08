@@ -1,10 +1,29 @@
-[gd_scene load_steps=12 format=3 uid="uid://txamr71ux6xl"]
+[gd_scene load_steps=41 format=3 uid="uid://txamr71ux6xl"]
 
 [ext_resource type="PackedScene" uid="uid://001sx3h20shs" path="res://variablen_manager.tscn" id="1_l7cbk"]
-[ext_resource type="PackedScene" uid="uid://dq7mq17w0t7s2" path="res://player.tscn" id="2_6x4gx"]
-[ext_resource type="PackedScene" uid="uid://b8b8fcs5h435m" path="res://room.tscn" id="3_k0b38"]
-[ext_resource type="PackedScene" uid="uid://cgab1ykw32h4r" path="res://ui_stuff.tscn" id="4_1nns5"]
-[ext_resource type="PackedScene" uid="uid://dsn5kxk62qin1" path="res://endscreen.tscn" id="5_s07yt"]
+[ext_resource type="Script" uid="uid://c2ojj45s1ubir" path="res://scritps/player.gd" id="2_uvgfp"]
+[ext_resource type="Texture2D" uid="uid://depgagjm8os56" path="res://Sprites/Character basic.png" id="3_cri2g"]
+[ext_resource type="Script" uid="uid://b8vwaq150pbxl" path="res://scritps/work_rich_text_label.gd" id="3_uvgfp"]
+[ext_resource type="Texture2D" uid="uid://b3jqbeaej4glo" path="res://Sprites/Bed.png" id="4_4lggk"]
+[ext_resource type="Texture2D" uid="uid://eaeh3rkamvkk" path="res://Sprites/Character stressed.png" id="4_fgg7d"]
+[ext_resource type="Script" uid="uid://trb6bkry4npk" path="res://scritps/play_rich_text_label.gd" id="5_4lggk"]
+[ext_resource type="Texture2D" uid="uid://bs4uyupiam6vi" path="res://Sprites/Character tired.png" id="5_jv2be"]
+[ext_resource type="Texture2D" uid="uid://cc7dfnr66iy8r" path="res://Sprites/Console.png" id="6_hehhx"]
+[ext_resource type="Texture2D" uid="uid://drj1chx1mxfhc" path="res://Sprites/Character tired and stressed.png" id="6_qvx3r"]
+[ext_resource type="Script" uid="uid://bx3oit2pd0xot" path="res://scritps/sleep_rich_text_label.gd" id="7_48x2x"]
+[ext_resource type="Texture2D" uid="uid://cgbn1rd5d3l71" path="res://Sprites/Controller.png" id="7_woe6x"]
+[ext_resource type="Script" uid="uid://5f8rgbug8fqr" path="res://scritps/days.gd" id="8_woe6x"]
+[ext_resource type="Texture2D" uid="uid://5iov6xsisf4s" path="res://Sprites/Desk.png" id="9_cri2g"]
+[ext_resource type="Script" uid="uid://daxxgix2odybf" path="res://scritps/RoomUI/work_progress_bar.gd" id="9_k4vso"]
+[ext_resource type="Script" uid="uid://cm85b04uqbmju" path="res://scritps/time.gd" id="9_xpli3"]
+[ext_resource type="Texture2D" uid="uid://b3x5aekpxtmuq" path="res://Sprites/Background.png" id="11_fgg7d"]
+[ext_resource type="Script" uid="uid://cpm82nwghtijw" path="res://scritps/RoomUI/health_progress_bar.gd" id="11_k4vso"]
+[ext_resource type="Texture2D" uid="uid://b16syya0jtmnf" path="res://Sprites/Chair.png" id="12_78hxn"]
+[ext_resource type="Script" uid="uid://ww5lfs3q7ag7" path="res://scritps/RoomUI/stress_progress_bar.gd" id="12_l7cbk"]
+[ext_resource type="Script" uid="uid://4kvqfpelv0xf" path="res://endscreen.gd" id="13_qvx3r"]
+[ext_resource type="Script" uid="uid://cboeeqahucrb3" path="res://win_or_lose.gd" id="14_78hxn"]
+[ext_resource type="Script" uid="uid://cbkp11y6ficih" path="res://win_or_lose_disc.gd" id="15_jo7i1"]
+[ext_resource type="Texture2D" uid="uid://dfb6o1eo4e23j" path="res://icon.svg" id="16_v0yip"]
 
 [sub_resource type="Curve" id="Curve_7ycvg"]
 _data = [Vector2(0.3032787, 0.50075305), 0.0, 0.68272454, 0, 0, Vector2(1, 1), 0.7165662, 0.0, 1, 0]
@@ -30,6 +49,67 @@ point_count = 3
 _data = [Vector2(0, 0.011295319), 0.0, 0.29484877, 0, 0, Vector2(1, 1), 1.5425423, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_vl18p"]
+radius = 65.192024
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jo7i1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_cri2g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_fgg7d")
+}],
+"loop": true,
+"name": &"stressed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_jv2be")
+}],
+"loop": true,
+"name": &"tired",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_qvx3r")
+}],
+"loop": true,
+"name": &"tired and stressed",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uvgfp"]
+size = Vector2(126.92207, 165)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hehhx"]
+size = Vector2(103.66856, 53.14499)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vl18p"]
+size = Vector2(236.11655, 56.463062)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4lggk"]
+size = Vector2(102.31918, 118.546906)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ukrw"]
+size = Vector2(33.115784, 166.57889)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uvgfp"]
+distance = -66.44444
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k4vso"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l7cbk"]
+bg_color = Color(0.33138773, 0.69533277, 0.3301982, 1)
+
 [node name="main_scene" type="Node2D"]
 
 [node name="UpdateTimer" type="Timer" parent="."]
@@ -50,13 +130,317 @@ time_Hour = 8
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Player" parent="." instance=ExtResource("2_6x4gx")]
+[node name="Player" type="CharacterBody2D" parent="."]
+z_index = 1
+script = ExtResource("2_uvgfp")
 
-[node name="Room" parent="." instance=ExtResource("3_k0b38")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, 16.29)
+scale = Vector2(0.725, 0.725)
+shape = SubResource("CircleShape2D_vl18p")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+position = Vector2(0, -60.095)
+scale = Vector2(0.349, 0.298)
+sprite_frames = SubResource("SpriteFrames_jo7i1")
+autoplay = "default"
+
+[node name="Room" type="Node2D" parent="."]
 position = Vector2(-112.5, 0)
+scale = Vector2(7.2421875, 5.0625)
 
-[node name="UI-Stuff" parent="." instance=ExtResource("4_1nns5")]
+[node name="Bett" type="StaticBody2D" parent="Room"]
+position = Vector2(-37.38888, -50.962963)
+scale = Vector2(0.41232643, 0.19753087)
 
-[node name="Endscreen" parent="." instance=ExtResource("5_s07yt")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room/Bett"]
+z_index = 1
+position = Vector2(15.832207, 124.5)
+shape = SubResource("RectangleShape2D_uvgfp")
+
+[node name="Sprite2D" type="Sprite2D" parent="Room/Bett"]
+position = Vector2(91.1802, 258)
+scale = Vector2(0.21932276, 0.6018519)
+texture = ExtResource("4_4lggk")
+
+[node name="BettArea2D" type="Area2D" parent="Room/Bett"]
+z_index = 1
+position = Vector2(16.501972, 192)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room/Bett/BettArea2D"]
+z_index = 1
+position = Vector2(0, 88.427505)
+shape = SubResource("RectangleShape2D_hehhx")
+
+[node name="SleepRichTextLabel" type="RichTextLabel" parent="Room/Bett/BettArea2D"]
+visible = false
+z_index = 1
+offset_left = -62.65263
+offset_top = -50.0
+offset_right = 62.922108
+offset_bottom = 60.0
+mouse_filter = 1
+bbcode_enabled = true
+text = "[sleepEffect]Sleep[/sleepEffect]"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("7_48x2x")
+
+[node name="Konsole" type="StaticBody2D" parent="Room"]
+position = Vector2(-39.777775, 51.481483)
+scale = Vector2(0.16666664, 0.19328707)
+
+[node name="Controller" type="Sprite2D" parent="Room/Konsole"]
+position = Vector2(239.9094, -266.34723)
+scale = Vector2(0.54026175, 0.6131736)
+texture = ExtResource("7_woe6x")
+
+[node name="Konsole" type="Sprite2D" parent="Room/Konsole"]
+z_index = 2
+position = Vector2(239.49518, -266.34726)
+scale = Vector2(0.5408451, 0.61317354)
+texture = ExtResource("6_hehhx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room/Konsole"]
+z_index = 2
+position = Vector2(41.488647, 34.74655)
+scale = Vector2(0.9999999, 0.99999946)
+shape = SubResource("RectangleShape2D_vl18p")
+
+[node name="Area2D" type="Area2D" parent="Room/Konsole"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room/Konsole/Area2D"]
+position = Vector2(37.760498, -51.736496)
+scale = Vector2(1.71, 1)
+shape = SubResource("RectangleShape2D_hehhx")
+
+[node name="PlayRichTextLabel" type="RichTextLabel" parent="Room/Konsole/Area2D"]
+visible = false
+offset_left = -65.33331
+offset_top = -68.08781
+offset_right = 66.00003
+offset_bottom = 71.91219
+mouse_filter = 1
+bbcode_enabled = true
+text = "[playEffect]Play[/playEffect]"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("5_4lggk")
+
+[node name="Arbeitsplatz" type="StaticBody2D" parent="Room"]
+z_index = 2
+position = Vector2(28.444447, 51.555557)
+scale = Vector2(0.35243058, 0.19328707)
+
+[node name="Chair" type="Sprite2D" parent="Room/Arbeitsplatz"]
+position = Vector2(-124.78606, -233.00586)
+scale = Vector2(0.3917929, 1.0219556)
+texture = ExtResource("12_78hxn")
+
+[node name="Arbeitsplatz" type="Sprite2D" parent="Room/Arbeitsplatz"]
+position = Vector2(-80.31754, -266.73047)
+scale = Vector2(0.25576904, 0.61317366)
+texture = ExtResource("9_cri2g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room/Arbeitsplatz"]
+position = Vector2(16.816483, 5.1097717)
+scale = Vector2(0.9999999, 0.99999964)
+shape = SubResource("RectangleShape2D_4lggk")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Room/Arbeitsplatz"]
+position = Vector2(84.72058, -18.906158)
+scale = Vector2(0.9999999, 0.9999997)
+shape = SubResource("RectangleShape2D_3ukrw")
+
+[node name="Area2D" type="Area2D" parent="Room/Arbeitsplatz"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room/Arbeitsplatz/Area2D"]
+position = Vector2(16.141796, -111.39314)
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_hehhx")
+
+[node name="WorkRichTextLabel" type="RichTextLabel" parent="Room/Arbeitsplatz/Area2D"]
+visible = false
+offset_left = -64.63054
+offset_top = -69.493004
+offset_right = 63.684723
+offset_bottom = 64.38323
+mouse_filter = 1
+bbcode_enabled = true
+text = "[workEffect]Work[/workEffect]"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_uvgfp")
+
+[node name="Tür" type="Sprite2D" parent="Room"]
+visible = false
+position = Vector2(37.888897, -62.419754)
+scale = Vector2(0.16666664, 0.020447543)
+texture = ExtResource("16_v0yip")
+
+[node name="RoomBorder" type="Node2D" parent="Room"]
+position = Vector2(0.22222221, 0)
+
+[node name="BottomBorder" type="StaticBody2D" parent="Room/RoomBorder"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room/RoomBorder/BottomBorder"]
+position = Vector2(0, -0.038)
+shape = SubResource("WorldBoundaryShape2D_uvgfp")
+
+[node name="TopBorder" type="StaticBody2D" parent="Room/RoomBorder"]
+position = Vector2(0, 25.28)
+rotation = 3.1415927
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room/RoomBorder/TopBorder"]
+position = Vector2(0, 1.892)
+shape = SubResource("WorldBoundaryShape2D_uvgfp")
+
+[node name="LeftBorder" type="StaticBody2D" parent="Room/RoomBorder"]
+position = Vector2(6.7508087, 0)
+rotation = 1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room/RoomBorder/LeftBorder"]
+position = Vector2(-3.885457e-08, -0.8888889)
+shape = SubResource("WorldBoundaryShape2D_uvgfp")
+
+[node name="RightBorder" type="StaticBody2D" parent="Room/RoomBorder"]
+position = Vector2(-6.925, 0)
+rotation = -1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room/RoomBorder/RightBorder"]
+position = Vector2(4.856821e-08, -1.1111112)
+shape = SubResource("WorldBoundaryShape2D_uvgfp")
+
+[node name="Ground" type="Sprite2D" parent="Room"]
+z_index = -1
+position = Vector2(0.11609745, -0.027781472)
+scale = Vector2(0.09010989, 0.11846708)
+texture = ExtResource("11_fgg7d")
+
+[node name="Lables" type="Node" parent="."]
+
+[node name="Days till Deadline" type="Label" parent="Lables"]
+offset_left = 352.0
+offset_top = -278.0
+offset_right = 905.0
+offset_bottom = -181.0
+text = "Days till Deadline:"
+
+[node name="Days" type="Label" parent="Lables/Days till Deadline"]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 1.0
+offset_right = 184.0
+offset_bottom = 89.0
+text = "0"
+script = ExtResource("8_woe6x")
+
+[node name="current time" type="Label" parent="Lables"]
+offset_left = 353.0
+offset_top = -314.0
+offset_right = 906.0
+offset_bottom = -217.0
+text = "Current time:"
+
+[node name="Time" type="Label" parent="Lables/current time"]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 2.0
+offset_right = 276.0
+offset_bottom = 90.0
+text = "00:00"
+script = ExtResource("9_xpli3")
+
+[node name="Work completed" type="Label" parent="Lables"]
+offset_left = 352.0
+offset_top = 24.0
+offset_right = 576.0
+offset_bottom = 121.0
+theme_override_font_sizes/font_size = 26
+text = "Work completed:"
+
+[node name="ProgressBar" type="ProgressBar" parent="Lables/Work completed"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 52.0
+offset_right = 202.0
+offset_bottom = 89.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_k4vso")
+theme_override_styles/fill = SubResource("StyleBoxFlat_l7cbk")
+script = ExtResource("9_k4vso")
+
+[node name="Stress level" type="Label" parent="Lables"]
+offset_left = 353.0
+offset_top = -244.0
+offset_right = 561.0
+offset_bottom = -122.0
+theme_override_font_sizes/font_size = 64
+text = "Stress:"
+
+[node name="ProgressBar" type="ProgressBar" parent="Lables/Stress level"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 77.0
+offset_right = 200.0
+offset_bottom = 114.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_k4vso")
+theme_override_styles/fill = SubResource("StyleBoxFlat_l7cbk")
+script = ExtResource("12_l7cbk")
+
+[node name="Health level" type="Label" parent="Lables"]
+offset_left = 352.0
+offset_top = -109.0
+offset_right = 575.0
+offset_bottom = 13.0
+theme_override_font_sizes/font_size = 64
+text = "Health:"
+
+[node name="ProgressBar" type="ProgressBar" parent="Lables/Health level"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 77.0
+offset_right = 200.0
+offset_bottom = 114.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_k4vso")
+theme_override_styles/fill = SubResource("StyleBoxFlat_l7cbk")
+script = ExtResource("11_k4vso")
+
+[node name="Endscreen" type="Polygon2D" parent="."]
+visible = false
+z_index = 1
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-610, -345, -600, 341, 588, 339, 618, -349)
+script = ExtResource("13_qvx3r")
+
+[node name="Time is up" type="Label" parent="Endscreen"]
+z_index = 10
+offset_left = -260.0
+offset_top = -169.0
+offset_right = 235.0
+offset_bottom = -81.0
+theme_override_font_sizes/font_size = 64
+text = "Your Time is up!"
+
+[node name="Win or Lose" type="Label" parent="Endscreen"]
+offset_left = -292.0
+offset_top = -87.0
+offset_right = -252.0
+offset_bottom = 88.0
+theme_override_font_sizes/font_size = 128
+script = ExtResource("14_78hxn")
+
+[node name="Win or Lose disc" type="Label" parent="Endscreen"]
+offset_left = -364.0
+offset_top = 119.0
+offset_right = -324.0
+offset_bottom = 164.0
+theme_override_font_sizes/font_size = 32
+script = ExtResource("15_jo7i1")
 
 [connection signal="timeout" from="UpdateTimer" to="Variablen-Manager" method="_on_timer_timeout"]
+[connection signal="body_entered" from="Room/Bett/BettArea2D" to="Room/Bett/BettArea2D/SleepRichTextLabel" method="_on_bett_area_2d_body_entered"]
+[connection signal="body_exited" from="Room/Bett/BettArea2D" to="Room/Bett/BettArea2D/SleepRichTextLabel" method="_on_bett_area_2d_body_exited"]
+[connection signal="body_entered" from="Room/Konsole/Area2D" to="Room/Konsole/Area2D/PlayRichTextLabel" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Room/Konsole/Area2D" to="Room/Konsole/Area2D/PlayRichTextLabel" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Room/Arbeitsplatz/Area2D" to="Room/Arbeitsplatz/Area2D/WorkRichTextLabel" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Room/Arbeitsplatz/Area2D" to="Room/Arbeitsplatz/Area2D/WorkRichTextLabel" method="_on_area_2d_body_exited"]
