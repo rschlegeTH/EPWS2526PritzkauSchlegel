@@ -1,10 +1,10 @@
 [gd_scene load_steps=44 format=3 uid="uid://txamr71ux6xl"]
 
 [ext_resource type="PackedScene" uid="uid://001sx3h20shs" path="res://variablen_manager.tscn" id="1_l7cbk"]
-[ext_resource type="Shader" path="res://shader/low_health.gdshader" id="2_jv2be"]
+[ext_resource type="Shader" uid="uid://c7rg0rt7ngvuc" path="res://shader/low_health.gdshader" id="2_jv2be"]
 [ext_resource type="Script" uid="uid://c2ojj45s1ubir" path="res://scritps/player.gd" id="2_uvgfp"]
 [ext_resource type="Texture2D" uid="uid://depgagjm8os56" path="res://Sprites/Character basic.png" id="3_cri2g"]
-[ext_resource type="Texture2D" path="res://Sprites/Low_health_overlay.png" id="3_s07yt"]
+[ext_resource type="Texture2D" uid="uid://dbixvu8bd3wqi" path="res://Sprites/Low_health_overlay.png" id="3_s07yt"]
 [ext_resource type="Script" uid="uid://b8vwaq150pbxl" path="res://scritps/work_rich_text_label.gd" id="3_uvgfp"]
 [ext_resource type="Texture2D" uid="uid://b3jqbeaej4glo" path="res://Sprites/Bed.png" id="4_4lggk"]
 [ext_resource type="Texture2D" uid="uid://eaeh3rkamvkk" path="res://Sprites/Character stressed.png" id="4_fgg7d"]
