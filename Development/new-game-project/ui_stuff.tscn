@@ -1,0 +1,100 @@
+[gd_scene load_steps=8 format=3 uid="uid://cgab1ykw32h4r"]
+
+[ext_resource type="Script" uid="uid://5f8rgbug8fqr" path="res://scritps/days.gd" id="1_dc431"]
+[ext_resource type="Script" uid="uid://cm85b04uqbmju" path="res://scritps/time.gd" id="2_btx7b"]
+[ext_resource type="Script" uid="uid://daxxgix2odybf" path="res://scritps/RoomUI/work_progress_bar.gd" id="3_3045a"]
+[ext_resource type="Script" uid="uid://ww5lfs3q7ag7" path="res://scritps/RoomUI/stress_progress_bar.gd" id="4_6atug"]
+[ext_resource type="Script" uid="uid://cpm82nwghtijw" path="res://scritps/RoomUI/health_progress_bar.gd" id="5_6jvku"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k4vso"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l7cbk"]
+bg_color = Color(0.33138773, 0.69533277, 0.3301982, 1)
+
+[node name="UI-Stuff" type="Node"]
+
+[node name="Days till Deadline" type="Label" parent="."]
+offset_left = 352.0
+offset_top = -278.0
+offset_right = 905.0
+offset_bottom = -181.0
+text = "Days till Deadline:"
+
+[node name="Days" type="Label" parent="Days till Deadline"]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 1.0
+offset_right = 184.0
+offset_bottom = 89.0
+text = "0"
+script = ExtResource("1_dc431")
+
+[node name="current time" type="Label" parent="."]
+offset_left = 353.0
+offset_top = -314.0
+offset_right = 906.0
+offset_bottom = -217.0
+text = "Current time:"
+
+[node name="Time" type="Label" parent="current time"]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 2.0
+offset_right = 276.0
+offset_bottom = 90.0
+text = "00:00"
+script = ExtResource("2_btx7b")
+
+[node name="Work completed" type="Label" parent="."]
+offset_left = 352.0
+offset_top = 24.0
+offset_right = 576.0
+offset_bottom = 121.0
+theme_override_font_sizes/font_size = 26
+text = "Work completed:"
+
+[node name="ProgressBar" type="ProgressBar" parent="Work completed"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 52.0
+offset_right = 202.0
+offset_bottom = 89.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_k4vso")
+theme_override_styles/fill = SubResource("StyleBoxFlat_l7cbk")
+script = ExtResource("3_3045a")
+
+[node name="Stress level" type="Label" parent="."]
+offset_left = 353.0
+offset_top = -244.0
+offset_right = 561.0
+offset_bottom = -122.0
+theme_override_font_sizes/font_size = 64
+text = "Stress:"
+
+[node name="ProgressBar" type="ProgressBar" parent="Stress level"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 77.0
+offset_right = 200.0
+offset_bottom = 114.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_k4vso")
+theme_override_styles/fill = SubResource("StyleBoxFlat_l7cbk")
+script = ExtResource("4_6atug")
+
+[node name="Health level" type="Label" parent="."]
+offset_left = 352.0
+offset_top = -109.0
+offset_right = 575.0
+offset_bottom = 13.0
+theme_override_font_sizes/font_size = 64
+text = "Health:"
+
+[node name="ProgressBar" type="ProgressBar" parent="Health level"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 77.0
+offset_right = 200.0
+offset_bottom = 114.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_k4vso")
+theme_override_styles/fill = SubResource("StyleBoxFlat_l7cbk")
+script = ExtResource("5_6jvku")

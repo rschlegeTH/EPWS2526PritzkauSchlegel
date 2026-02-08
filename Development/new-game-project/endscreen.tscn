@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsn5kxk62qin1"]
+
+[ext_resource type="Script" uid="uid://4kvqfpelv0xf" path="res://endscreen.gd" id="1_dlbub"]
+[ext_resource type="Script" uid="uid://cboeeqahucrb3" path="res://win_or_lose.gd" id="2_k7cnj"]
+[ext_resource type="Script" uid="uid://cbkp11y6ficih" path="res://win_or_lose_disc.gd" id="3_nxgh7"]
+
+[node name="Endscreen" type="Polygon2D"]
+visible = false
+z_index = 1
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-610, -345, -600, 341, 588, 339, 618, -349)
+script = ExtResource("1_dlbub")
+
+[node name="Time is up" type="Label" parent="."]
+z_index = 10
+offset_left = -260.0
+offset_top = -169.0
+offset_right = 235.0
+offset_bottom = -81.0
+theme_override_font_sizes/font_size = 64
+text = "Your Time is up!"
+
+[node name="Win or Lose" type="Label" parent="."]
+offset_left = -292.0
+offset_top = -87.0
+offset_right = -252.0
+offset_bottom = 88.0
+theme_override_font_sizes/font_size = 128
+script = ExtResource("2_k7cnj")
+
+[node name="Win or Lose disc" type="Label" parent="."]
+offset_left = -364.0
+offset_top = 119.0
+offset_right = -324.0
+offset_bottom = 164.0
+theme_override_font_sizes/font_size = 32
+script = ExtResource("3_nxgh7")
