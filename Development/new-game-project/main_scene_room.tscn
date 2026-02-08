@@ -53,7 +53,7 @@ point_count = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qvx3r"]
 shader = ExtResource("2_jv2be")
-shader_parameter/intensity = 0.0
+shader_parameter/intensity = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vl18p"]
 radius = 65.192024
@@ -139,6 +139,7 @@ time_Hour = 8
 [node name="ShaderEffekte" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="ShaderEffekte"]
+z_index = 3
 material = SubResource("ShaderMaterial_qvx3r")
 position = Vector2(-112, 1.4066696e-05)
 scale = Vector2(0.6535211, 0.6)
@@ -230,6 +231,7 @@ shape = SubResource("RectangleShape2D_hehhx")
 
 [node name="PlayRichTextLabel" type="RichTextLabel" parent="Room/Konsole/Area2D"]
 visible = false
+z_index = 3
 offset_left = -65.33331
 offset_top = -68.08781
 offset_right = 66.00003
@@ -421,7 +423,7 @@ script = ExtResource("11_k4vso")
 
 [node name="Endscreen" type="Polygon2D" parent="."]
 visible = false
-z_index = 1
+z_index = 10
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-610, -345, -600, 341, 588, 339, 618, -349)
 script = ExtResource("13_qvx3r")
