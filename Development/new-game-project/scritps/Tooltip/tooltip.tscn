@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://solg1nieiklo"]
+
+[ext_resource type="Script" uid="uid://dtlf4x4a6sykk" path="res://scritps/Tooltip/tooltip.gd" id="1_elqob"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_elqob"]
+bg_color = Color(0.15294118, 0.15294118, 0.15294118, 0.8352941)
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+expand_margin_left = 12.0
+expand_margin_top = 12.0
+expand_margin_right = 12.0
+expand_margin_bottom = 12.0
+
+[node name="Tooltip" type="PanelContainer"]
+top_level = true
+z_index = 20
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_behavior_recursive = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_elqob")
+script = ExtResource("1_elqob")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+fit_content = true
