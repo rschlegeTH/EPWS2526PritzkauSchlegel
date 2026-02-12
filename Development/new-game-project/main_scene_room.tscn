@@ -126,7 +126,6 @@ autostart = true
 [node name="Variablen-Manager" parent="." instance=ExtResource("1_l7cbk")]
 unique_name_in_owner = true
 stress = 10.0
-completion = 51.345
 g_modTicksSinceSleep = SubResource("Curve_7ycvg")
 g_modStress = SubResource("Curve_wr18j")
 s_modDead = SubResource("Curve_qwutr")
@@ -140,7 +139,7 @@ time_Hour = 8
 
 [node name="ShaderEffekte" type="Node2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="ShaderEffekte"]
+[node name="LowHealthShader" type="Sprite2D" parent="ShaderEffekte"]
 z_index = 3
 material = SubResource("ShaderMaterial_qvx3r")
 position = Vector2(-112, 1.4066696e-05)
