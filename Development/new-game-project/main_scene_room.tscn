@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://txamr71ux6xl"]
+[gd_scene load_steps=50 format=3 uid="uid://txamr71ux6xl"]
 
 [ext_resource type="PackedScene" uid="uid://001sx3h20shs" path="res://variablen_manager.tscn" id="1_l7cbk"]
 [ext_resource type="Shader" uid="uid://c7rg0rt7ngvuc" path="res://shader/low_health.gdshader" id="2_jv2be"]
@@ -8,11 +8,14 @@
 [ext_resource type="Script" uid="uid://b8vwaq150pbxl" path="res://scritps/work_rich_text_label.gd" id="3_uvgfp"]
 [ext_resource type="Texture2D" uid="uid://b3jqbeaej4glo" path="res://Sprites/Bed.png" id="4_4lggk"]
 [ext_resource type="Texture2D" uid="uid://eaeh3rkamvkk" path="res://Sprites/Character stressed.png" id="4_fgg7d"]
+[ext_resource type="Script" uid="uid://dhxmwv6rvlxts" path="res://Sprites/low_health_shader.gd" id="4_jo7i1"]
+[ext_resource type="Shader" uid="uid://p6ywbc8hrhv" path="res://shader/high_stress.gdshader" id="5_3ukrw"]
 [ext_resource type="Script" uid="uid://trb6bkry4npk" path="res://scritps/play_rich_text_label.gd" id="5_4lggk"]
 [ext_resource type="Texture2D" uid="uid://bs4uyupiam6vi" path="res://Sprites/Character tired.png" id="5_jv2be"]
 [ext_resource type="Texture2D" uid="uid://cc7dfnr66iy8r" path="res://Sprites/Console.png" id="6_hehhx"]
 [ext_resource type="Texture2D" uid="uid://drj1chx1mxfhc" path="res://Sprites/Character tired and stressed.png" id="6_qvx3r"]
 [ext_resource type="Script" uid="uid://bx3oit2pd0xot" path="res://scritps/sleep_rich_text_label.gd" id="7_48x2x"]
+[ext_resource type="Script" uid="uid://cu3u6kjh312rh" path="res://scritps/high_stress_shader.gd" id="7_gvlgq"]
 [ext_resource type="Texture2D" uid="uid://cgbn1rd5d3l71" path="res://Sprites/Controller.png" id="7_woe6x"]
 [ext_resource type="Script" uid="uid://5f8rgbug8fqr" path="res://scritps/days.gd" id="8_woe6x"]
 [ext_resource type="Texture2D" uid="uid://5iov6xsisf4s" path="res://Sprites/Desk.png" id="9_cri2g"]
@@ -56,6 +59,13 @@ point_count = 2
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qvx3r"]
 shader = ExtResource("2_jv2be")
 shader_parameter/intensity = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gvlgq"]
+shader = ExtResource("5_3ukrw")
+shader_parameter/intensity = 1.0
+shader_parameter/FactorA = Vector2(100, 100)
+shader_parameter/FactorB = Vector2(1, 1)
+shader_parameter/magnitude = Vector2(0.01, 0.01)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vl18p"]
 radius = 65.192024
@@ -145,6 +155,15 @@ material = SubResource("ShaderMaterial_qvx3r")
 position = Vector2(-112, 1.4066696e-05)
 scale = Vector2(0.6535211, 0.6)
 texture = ExtResource("3_s07yt")
+script = ExtResource("4_jo7i1")
+
+[node name="HighStressShader" type="Sprite2D" parent="ShaderEffekte"]
+z_index = 3
+material = SubResource("ShaderMaterial_gvlgq")
+position = Vector2(-112.00003, 0)
+scale = Vector2(7.25, 5.0625)
+texture = ExtResource("16_v0yip")
+script = ExtResource("7_gvlgq")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 z_index = 1
