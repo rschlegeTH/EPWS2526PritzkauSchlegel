@@ -65,11 +65,11 @@ shader_parameter/intensity = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qvx3r"]
 shader = ExtResource("2_jv2be")
-shader_parameter/intensity = 1.0
+shader_parameter/intensity = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gvlgq"]
 shader = ExtResource("5_3ukrw")
-shader_parameter/intensity = 1.0
+shader_parameter/intensity = 0.0
 shader_parameter/FactorA = Vector2(100, 100)
 shader_parameter/FactorB = Vector2(1, 1)
 shader_parameter/magnitude = Vector2(0.01, 0.01)

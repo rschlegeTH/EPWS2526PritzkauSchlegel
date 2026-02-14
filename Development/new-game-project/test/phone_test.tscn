@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjmuqwhhx3ur5"]
+
+[ext_resource type="Texture2D" uid="uid://dfb6o1eo4e23j" path="res://icon.svg" id="1_qkltm"]
+[ext_resource type="Script" uid="uid://dvymfu68u83wn" path="res://test/phone_test.gd" id="2_vnpuj"]
+
+[node name="phone_test" type="Node2D"]
+
+[node name="phone" type="Sprite2D" parent="."]
+position = Vector2(384, 232)
+texture = ExtResource("1_qkltm")
+script = ExtResource("2_vnpuj")
