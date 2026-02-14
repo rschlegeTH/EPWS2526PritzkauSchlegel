@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7phnqg17lak8"]
+
+[ext_resource type="Script" uid="uid://dfhcgjmjjamxh" path="res://scritps/Telefon/telefon_interaction_ui.gd" id="1_qinj5"]
+[ext_resource type="Texture2D" uid="uid://5iov6xsisf4s" path="res://Sprites/Desk.png" id="2_5gr4t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qhs0p"]
+size = Vector2(33.115784, 166.57889)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_imd0l"]
+size = Vector2(68.098526, 202.34886)
+
+[node name="Telefon" type="Node2D"]
+z_index = 2
+script = ExtResource("1_qinj5")
+
+[node name="Arbeitsplatz2" type="StaticBody2D" parent="."]
+z_index = 2
+position = Vector2(8.000004, 24)
+scale = Vector2(0.35243058, 0.19328707)
+
+[node name="Arbeitsplatz" type="Sprite2D" parent="Arbeitsplatz2"]
+position = Vector2(-80.31754, -266.73047)
+scale = Vector2(0.25576904, 0.61317366)
+texture = ExtResource("2_5gr4t")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Arbeitsplatz2"]
+position = Vector2(84.72058, -18.906158)
+scale = Vector2(0.9999999, 0.9999997)
+shape = SubResource("RectangleShape2D_qhs0p")
+
+[node name="Area2D" type="Area2D" parent="Arbeitsplatz2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arbeitsplatz2/Area2D"]
+position = Vector2(21.438416, -36.79123)
+scale = Vector2(0.9999999, 0.99999994)
+shape = SubResource("RectangleShape2D_imd0l")
+
+[node name="TelefonInteractionUI" type="RichTextLabel" parent="Arbeitsplatz2/Area2D"]
+visible = false
+z_index = 20
+offset_left = -64.63054
+offset_top = -69.493004
+offset_right = 63.684723
+offset_bottom = 64.38323
+mouse_filter = 1
+bbcode_enabled = true
+text = "[E]Telefon"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="Arbeitsplatz2/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Arbeitsplatz2/Area2D" to="." method="_on_area_2d_body_exited"]
