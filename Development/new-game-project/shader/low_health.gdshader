@@ -10,6 +10,6 @@ vec4 hard_light(vec4 base, vec4 blend){
 void fragment()
 {
   vec4 bg_color = texture( SCREEN_TEXTURE, SCREEN_UV );
-  COLOR.rgb = hard_light( bg_color, COLOR ).rgb;
-  COLOR.a = intensity;
+  COLOR.rgb = mix(bg_color, hard_light( bg_color, COLOR ), intensity).rgb;
+  //COLOR.a = intensity;
 }

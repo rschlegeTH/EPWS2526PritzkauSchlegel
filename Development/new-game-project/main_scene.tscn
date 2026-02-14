@@ -12,9 +12,9 @@
 [ext_resource type="Script" uid="uid://d24isyeimle14" path="res://scritps/health.gd" id="5_7ycvg"]
 [ext_resource type="Script" uid="uid://trb6bkry4npk" path="res://scritps/play_rich_text_label.gd" id="5_qwutr"]
 [ext_resource type="Script" uid="uid://bx3oit2pd0xot" path="res://scritps/sleep_rich_text_label.gd" id="7_671wp"]
-[ext_resource type="Script" uid="uid://4kvqfpelv0xf" path="res://endscreen.gd" id="13_mo76n"]
-[ext_resource type="Script" uid="uid://cboeeqahucrb3" path="res://win_or_lose.gd" id="14_42l1d"]
-[ext_resource type="Script" uid="uid://cbkp11y6ficih" path="res://win_or_lose_disc.gd" id="15_2jcla"]
+[ext_resource type="Script" uid="uid://4kvqfpelv0xf" path="res://scritps/endscreen.gd" id="13_mo76n"]
+[ext_resource type="Script" uid="uid://cboeeqahucrb3" path="res://scritps/win_or_lose.gd" id="14_42l1d"]
+[ext_resource type="Script" uid="uid://cbkp11y6ficih" path="res://scritps/win_or_lose_disc.gd" id="15_2jcla"]
 
 [sub_resource type="Curve" id="Curve_7ycvg"]
 _data = [Vector2(0.3032787, 0.50075305), 0.0, 0.68272454, 0, 0, Vector2(1, 1), 0.7165662, 0.0, 1, 0]
