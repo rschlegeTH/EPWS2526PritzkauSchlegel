@@ -1,0 +1,74 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccrdcctiyiwut"]
+
+[ext_resource type="Script" uid="uid://bbv0ooko4pfrs" path="res://scritps/DialogRPGStyle/textbox.gd" id="1_mytm0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wy3rq"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+
+[sub_resource type="SystemFont" id="SystemFont_mytm0"]
+
+[node name="Textbox" type="CanvasLayer"]
+script = ExtResource("1_mytm0")
+
+[node name="TextboxContainer" type="MarginContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -232.0
+offset_right = -208.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = -16
+theme_override_constants/margin_bottom = 16
+
+[node name="Panel" type="Panel" parent="TextboxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wy3rq")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextboxContainer"]
+custom_minimum_size = Vector2(0, 157)
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Panel" type="Panel" parent="TextboxContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextboxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Start" type="Label" parent="TextboxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(18, 0)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = SubResource("SystemFont_mytm0")
+theme_override_font_sizes/font_size = 32
+text = "*"
+
+[node name="Label" type="Label" parent="TextboxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(866, 141)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = SubResource("SystemFont_mytm0")
+theme_override_font_sizes/font_size = 32
+text = "Platzhalter von Ben Ben BEnNNNNNNNN BEn BEnnnnnnnnnnnnnnnn BENNNNNNNNNNNNNNNN Bfsdf"
+autowrap_mode = 3
+
+[node name="End" type="Label" parent="TextboxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = SubResource("SystemFont_mytm0")
+theme_override_font_sizes/font_size = 32
+text = "V"

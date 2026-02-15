@@ -1,5 +1,5 @@
 extends Node
-
+## Veraltet
 
 @onready var text_box_scene = preload("res://scritps/Dialog/text_box.tscn")
 
