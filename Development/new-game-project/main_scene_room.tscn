@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://txamr71ux6xl"]
+[gd_scene load_steps=65 format=3 uid="uid://txamr71ux6xl"]
 
 [ext_resource type="PackedScene" uid="uid://001sx3h20shs" path="res://variablen_manager.tscn" id="1_l7cbk"]
 [ext_resource type="Shader" uid="uid://mbwuvm5tynd7" path="res://shader/low_productivity.gdshader" id="2_imkwa"]
@@ -42,6 +42,7 @@
 [ext_resource type="PackedScene" uid="uid://solg1nieiklo" path="res://scritps/Tooltip/tooltip.tscn" id="20_78hxn"]
 [ext_resource type="Script" uid="uid://pi2ooeptgdgq" path="res://scritps/Tooltip/tooltip_interact.gd" id="23_jo7i1"]
 [ext_resource type="PackedScene" uid="uid://c7phnqg17lak8" path="res://scritps/Telefon/telefon.tscn" id="30_bddpn"]
+[ext_resource type="PackedScene" uid="uid://ddyt5x518ckji" path="res://scritps/Restart_Button/restart_button.tscn" id="43_eo7ub"]
 
 [sub_resource type="Curve" id="Curve_7ycvg"]
 _data = [Vector2(0.3032787, 0.50075305), 0.0, 0.68272454, 0, 0, Vector2(1, 1), 0.7165662, 0.0, 1, 0]
@@ -674,6 +675,13 @@ offset_right = -469.0
 offset_bottom = 188.0
 theme_override_font_sizes/font_size = 32
 script = ExtResource("15_jo7i1")
+
+[node name="Restart_Button" parent="Endscreen" instance=ExtResource("43_eo7ub")]
+offset_left = -96.0
+offset_top = 52.875
+offset_right = 98.0
+offset_bottom = 116.87494
+theme_override_font_sizes/font_size = 32
 
 [connection signal="timeout" from="UpdateTimer" to="Variablen-Manager" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Room/Bett/BettArea2D" to="Room/Bett/BettArea2D/SleepRichTextLabel" method="_on_bett_area_2d_body_entered"]

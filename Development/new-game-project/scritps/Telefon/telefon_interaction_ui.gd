@@ -9,7 +9,7 @@ var callAvailable: bool = false
 
 ## Eine Array-Zelle beschreibt eine Textbox.
 @export_multiline var lines: Array[String] = [
-	"???: Hallo, Lisa? Bist du dran? ",
+	"???: Heya, Lisa? Bist du dran? ",
 	"Lisa: Ja, Lisa hier. Wer ist denn da?",
 	"???: Ich bins, Ken! Wir haben doch zusammen unser Entwicklungsprojekt!",
 	"Lisa: Ah, ich erinnere mich. Was gibt es denn?",
@@ -18,8 +18,8 @@ var callAvailable: bool = false
 	"Ken: Keine Sorge! Du schafst das! Ich kann dir leider nicht helfen, da ich mit meiner Familie Unterwegs bin. ",
 	"Lisa: ...",
 	"Ken: Ok, ich weiß, dass das jetzt nicht leicht wird, aber du musst das alleine fertig machen. Wenn du das schaffen willst, musst du auf deine Gesundheit achten!",
-	"Ken: Die ganze Zeit an so einem Projekt zu machen, macht dich doch nur krank.", 
-	"Ken: Und nimm dir regelmäßig Pausen, um deinen Hobbys nachzugehen und zu schlafen, sonst gehst du noch im Stress unter!",
+	"Ken: Die ganze Zeit an so einem Projekt zu arbeiten, macht dich doch noch krank.", 
+	"Ken: Und nimm dir regelmäßig Pausen, um deinen Hobbys nachzugehen und zu schlafen, sonst gehst du noch im Stress und Krankheit unter!",
 	"Lisa: Das weiß ich doch selber!",
 	"Ken: Wie dem auch sei. Gib auf dich acht und bitte mach das Projekt fertig. Ohne deinen Part sind wir aufgeschmissen!",
 	"Lisa: Ok, ich gebe mein bestes!",
@@ -57,6 +57,7 @@ var callAvailable: bool = false
 	"Lisa: Dankschön, wir sehen uns dann nächste Woche?",
 	"Ken: Ja, dann bis dann.",
 	"Lisa: Bis dann.",
+	"*Piep*, *piep*, *piep*",
 	]
 
 @export_multiline var lines3b: Array[String] = [
@@ -68,6 +69,7 @@ var callAvailable: bool = false
 	"Lisa: Ja, das passt schon.",
 	"Ken: Gut, ich sollte in paar Tagen wieder zurück sein. Ich gebe dir dann einen aus!",
 	"Lisa: Gut, dann bis dann!",
+	"*Piep*, *piep*, *piep*",
 	]
 
 var current_lines: Array[String] = [""]

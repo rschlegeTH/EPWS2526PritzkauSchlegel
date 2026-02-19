@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddyt5x518ckji"]
+
+[ext_resource type="Script" uid="uid://1lua1kghgods" path="res://scritps/Restart_Button/restart_button.gd" id="1_xo73g"]
+
+[node name="Restart_Button" type="Button"]
+text = "Neustart"
+script = ExtResource("1_xo73g")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
