@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://c7phnqg17lak8"]
 
 [ext_resource type="Script" uid="uid://dfhcgjmjjamxh" path="res://scritps/Telefon/telefon_interaction_ui.gd" id="1_qinj5"]
-[ext_resource type="Texture2D" uid="uid://5iov6xsisf4s" path="res://Sprites/Desk.png" id="2_5gr4t"]
+[ext_resource type="Texture2D" uid="uid://cle8j6tdmqdm5" path="res://Sprites/Phone.png" id="2_qinj5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhs0p"]
-size = Vector2(33.115784, 166.57889)
+size = Vector2(84.65636, 207.45714)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qinj5"]
-size = Vector2(32, 42)
+size = Vector2(47.999924, 56)
 
 [node name="Telefon" type="Node2D"]
 z_index = 2
@@ -15,16 +15,13 @@ script = ExtResource("1_qinj5")
 
 [node name="Telefon" type="StaticBody2D" parent="."]
 z_index = 2
-position = Vector2(8.000004, 24)
 scale = Vector2(0.35243058, 0.19328707)
 
 [node name="Arbeitsplatz" type="Sprite2D" parent="Telefon"]
-position = Vector2(-80.31754, -266.73047)
-scale = Vector2(0.25576904, 0.61317366)
-texture = ExtResource("2_5gr4t")
+texture = ExtResource("2_qinj5")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Telefon"]
-position = Vector2(84.72058, -18.906158)
+position = Vector2(655.2147, -103.72854)
 scale = Vector2(0.9999999, 0.9999997)
 shape = SubResource("RectangleShape2D_qhs0p")
 
@@ -35,7 +32,7 @@ collision_layer = 9
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Telefon/Area2D"]
-position = Vector2(16, 19)
+position = Vector2(208.00008, 4)
 shape = SubResource("RectangleShape2D_qinj5")
 
 [node name="TelefonInteractionUI" type="RichTextLabel" parent="Telefon/Area2D"]
