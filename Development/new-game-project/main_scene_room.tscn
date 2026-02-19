@@ -76,7 +76,7 @@ shader_parameter/intensity = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s2nlt"]
 shader = ExtResource("11_k18p7")
-shader_parameter/intensity = 1.0
+shader_parameter/intensity = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gvlgq"]
 shader = ExtResource("5_3ukrw")
