@@ -7,19 +7,19 @@ const JUMP_VELOCITY = -400.0
 @onready var vMan := %"Variablen-Manager"
 
 func _process(_delta: float) -> void:
-	if((vMan.stress > 50) && (vMan.gesundheit < 50)):
+	if((vMan.stress > 40) && (vMan.gesundheit < 60)):
 		anim.play("tired and stressed")
 		if((vMan.stress > 80) && (vMan.gesundheit < 20)):
 			anim.play("max tired and max stressed")
-		elif ((vMan.stress > 80) && (vMan.gesundheit < 50)):
+		elif ((vMan.stress > 80) && (vMan.gesundheit < 60)):
 			anim.play("tired and max stressed")
-		elif ((vMan.stress > 50) && (vMan.gesundheit < 20)):
+		elif ((vMan.stress > 40) && (vMan.gesundheit < 20)):
 			anim.play("max tired and stressed")
-	elif(vMan.stress > 50):
+	elif(vMan.stress > 40):
 		anim.play("stressed")
 		if(vMan.stress > 80):
 			anim.play("max stressed")
-	elif(vMan.gesundheit < 50):
+	elif(vMan.gesundheit < 60):
 		anim.play("tired")
 		if(vMan.gesundheit < 20):
 			anim.play("max tired")

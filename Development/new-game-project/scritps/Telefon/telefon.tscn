@@ -46,17 +46,25 @@ position = Vector2(208.00008, 4)
 shape = SubResource("RectangleShape2D_qinj5")
 
 [node name="TelefonInteractionUI" type="RichTextLabel" parent="Telefon/Area2D"]
-visible = false
 z_index = 20
-offset_left = -14.777775
-offset_top = 10.567901
-offset_right = 113.53749
-offset_bottom = 144.44414
+offset_left = 151.887
+offset_top = 17.853
+offset_right = 280.48322
+offset_bottom = 51.285
+scale = Vector2(0.74, 0.415)
 mouse_filter = 1
 bbcode_enabled = true
 text = "[E]Telefon"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Telefon/Area2D/TelefonInteractionUI"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = -19.222223
+offset_top = -13.567901
+offset_right = 142.7778
+offset_bottom = 48.4321
 
 [connection signal="body_entered" from="Telefon/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Telefon/Area2D" to="." method="_on_area_2d_body_exited"]
