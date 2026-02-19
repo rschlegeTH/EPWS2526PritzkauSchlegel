@@ -4,7 +4,7 @@ extends Node
 const TEXTBOX = preload("res://scritps/DialogRPGStyle/textbox.tscn")
 
 var is_dialogue_active = false
-var vMan:Node
+var vMan:Node # Variablen Manager
 ## Übergebenen Text in einer Textbox ausgeben.
 func show_text(lines: Array[String]):
 	

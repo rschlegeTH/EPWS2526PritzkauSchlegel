@@ -12,6 +12,7 @@ var text_box_position: Vector2
 var is_dialog_active = false
 var can_advance_line = false
 
+var vMan:Node # Variablen Manager
 func start_dialog(position: Vector2, lines: Array[String]):
 	if is_dialog_active:
 		return
@@ -21,6 +22,8 @@ func start_dialog(position: Vector2, lines: Array[String]):
 	_show_text_box()
 	
 	is_dialog_active = true
+	if vMan:
+		vMan.text_active = is_dialog_active
 
 func _show_text_box():
 	text_box = text_box_scene.instantiate()
@@ -46,6 +49,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		current_line_index += 1
 		if current_line_index >= dialog_lines.size():
 			is_dialog_active = false
+			if vMan:
+				vMan.text_active = is_dialog_active
 			current_line_index = 0
 			return
 		

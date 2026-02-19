@@ -29,6 +29,8 @@ func _physics_process(_delta: float) -> void:
 	#Sollte gerade Dialog ausgeführt werden, darf der Spieler sich nicht bewegen.
 	if(vMan.text_active):
 		return
+		
+	
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.

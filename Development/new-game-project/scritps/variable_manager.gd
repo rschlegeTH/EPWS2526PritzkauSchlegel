@@ -30,7 +30,7 @@ var debug_mode := false
 @export_range(0, 288) var ticksSinceSleep: int = 0 ## Die vergangenen Ticks, seit der letzten Nutzung des Schlafbuttons.
 #ALT Sonstige Variablen
 var interactionObject: int = 0
-var text_active:= false
+var text_active:= false ## "Ist ein Text sichtbar?" Wird von dem DialogueManager gesetzt.
 
 func _ready() -> void:
 	DialogueManager.vMan = self
@@ -112,6 +112,7 @@ func work(time_spent:int = 4, standardIncrease: float = 2) -> void: # standardIn
 func sleep(time_spent:int = 8, standardIncrease: float = 10 ) -> void:
 	if(ticksSinceSleep < 48):
 		print("not tired yet")
+		DialogueManager.show_text(["Ich bin noch nicht müde."])
 		return
 	@warning_ignore("integer_division") increase_Time(floor(time_spent * 60 / MINUTETICK))
 	if(time_spent < 6):
