@@ -33,7 +33,7 @@ var debug_mode := false
 #ALT Sonstige Variablen
 var interactionObject: int = 0
 var text_active:= false ## "Ist ein Text sichtbar?" Wird von dem DialogueManager gesetzt.
-
+var sleep_shader:= false
 func _ready() -> void:
 	DialogueManager.vMan = self
 
@@ -96,8 +96,12 @@ func workButton () -> void:
 func sleepButton () -> void:
 	if(dead >= DEADLINE):
 		return
+	if(ticksSinceSleep < 48):
+		print("not tired yet")
+		DialogueManager.show_text(["Ich bin noch nicht müde."])
+		return
 	print("sleep")
-	sleep()
+	sleep_shader = true
 func gameButton () -> void:
 	if(dead >= DEADLINE):
 		return
@@ -112,10 +116,7 @@ func work(time_spent:int = 4, standardIncrease: float = 2) -> void: # standardIn
 
 ## Schlafen, erhöht Gesundheitswert abhängig von der verbrauchten Zeit und verringert die Zeit um time_spent. standardIncrease beschreibt den Gesundheitsgewinn pro Stunde.
 func sleep(time_spent:int = 8, standardIncrease: float = 10 ) -> void:
-	if(ticksSinceSleep < 48):
-		print("not tired yet")
-		DialogueManager.show_text(["Ich bin noch nicht müde."])
-		return
+	print("sleep")
 	@warning_ignore("integer_division") increase_Time(floor(time_spent * 60 / MINUTETICK))
 	if(time_spent < 6):
 		@warning_ignore("integer_division") ticksSinceSleep = (ticksSinceSleep/time_spent) 
@@ -132,7 +133,7 @@ func playGame(time_spent: int=2, standardIncrease: float = 4 ) -> void:
 
 ## Uhrzeit erhöhen um einen bestimmten Stundend-Wert, sollte keine Wert übergeben werden oder der Wert 0 sein, wird die Zeit um 5 min erhöht.
 func increase_Time(time_Inc:int = 0) -> void:
-	if(text_active):
+	if(text_active||sleep_shader):
 		return
 	totalGameTicks = totalGameTicks + time_Inc
 	var totalMinutes: int = totalGameTicks * MINUTETICK

@@ -15,6 +15,7 @@ z_index = 2
 script = ExtResource("1_qinj5")
 
 [node name="Ring1" parent="." instance=ExtResource("2_5gr4t")]
+visible = false
 offset_left = 184.0
 offset_top = -48.0
 offset_right = -912.0

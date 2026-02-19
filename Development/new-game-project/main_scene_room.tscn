@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://txamr71ux6xl"]
+[gd_scene load_steps=64 format=3 uid="uid://txamr71ux6xl"]
 
 [ext_resource type="PackedScene" uid="uid://001sx3h20shs" path="res://variablen_manager.tscn" id="1_l7cbk"]
 [ext_resource type="Shader" uid="uid://mbwuvm5tynd7" path="res://shader/low_productivity.gdshader" id="2_imkwa"]
@@ -23,6 +23,7 @@
 [ext_resource type="Script" uid="uid://5f8rgbug8fqr" path="res://scritps/days.gd" id="8_woe6x"]
 [ext_resource type="Texture2D" uid="uid://5iov6xsisf4s" path="res://Sprites/Desk.png" id="9_cri2g"]
 [ext_resource type="Script" uid="uid://daxxgix2odybf" path="res://scritps/RoomUI/work_progress_bar.gd" id="9_k4vso"]
+[ext_resource type="Script" uid="uid://b4dwfavjn0p2b" path="res://fade_to_black_shader.gd" id="9_s2nlt"]
 [ext_resource type="Script" uid="uid://cm85b04uqbmju" path="res://scritps/time.gd" id="9_xpli3"]
 [ext_resource type="Texture2D" uid="uid://b3x5aekpxtmuq" path="res://Sprites/Background.png" id="11_fgg7d"]
 [ext_resource type="Script" uid="uid://cpm82nwghtijw" path="res://scritps/RoomUI/health_progress_bar.gd" id="11_k4vso"]
@@ -245,6 +246,7 @@ material = SubResource("ShaderMaterial_s2nlt")
 position = Vector2(-137.00003, 1.4066696e-05)
 scale = Vector2(0.61830986, 0.6)
 texture = ExtResource("3_s07yt")
+script = ExtResource("9_s2nlt")
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="ShaderEffekte"]
 z_index = 3
