@@ -1,13 +1,17 @@
 extends PanelContainer
 
 @export var mouse_mode:= true
+@export var is_visible := false
 var opacity_tween: Tween = null
 @export_range(0.0, 1.0) var duration : float = 0.3
 @export_multiline var text: String = ""
 @onready var label = $RichTextLabel
 const OFFSET := Vector2(-225, 25)
 func _ready() -> void:
-	hide()
+	if(is_visible):
+		show()
+	else:
+		hide()
 	label.text = text
 	
 	
