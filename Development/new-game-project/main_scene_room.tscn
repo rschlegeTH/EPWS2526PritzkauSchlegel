@@ -439,9 +439,10 @@ position = Vector2(-3.3829534, -1.2889504e-06)
 scale = Vector2(0.08537611, 0.118518524)
 texture = ExtResource("11_fgg7d")
 
-[node name="Telefon" parent="Room" instance=ExtResource("30_bddpn")]
+[node name="Telefon" parent="Room" node_paths=PackedStringArray("vMan") instance=ExtResource("30_bddpn")]
 position = Vector2(41.907227, -20.938272)
 scale = Vector2(0.33139157, 0.4740741)
+vMan = NodePath("../../Variablen-Manager")
 
 [node name="Lables" type="Control" parent="."]
 layout_mode = 3

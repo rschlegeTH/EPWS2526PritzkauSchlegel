@@ -3,6 +3,7 @@ extends Node2D
 var playerInArea: bool = false
 var callAvailable: bool = false
 @onready var ui = $"Telefon/Area2D/TelefonInteractionUI"
+@export var vMan : Node
 
 ## Eine Array-Zelle beschreibt eine Textbox.
 @export_multiline var lines: Array[String] = [
@@ -24,9 +25,26 @@ var callAvailable: bool = false
 	"Lina: Danke, bis dann.",
 	"*Piep*, *piep*, *piep*",
 ]
+@export_multiline var lines2: Array[String] = ["lines 2"]
+
+@export_multiline var lines3: Array[String] = ["lines 3"]
+
+var current_lines: Array[String] = [""]
+var current_call : int = 0
+
+func _process(_delta: float) -> void:
+	if vMan:
+		if (vMan.time_Hour > 14) && (vMan.dead == 1):
+			current_lines = lines
+		elif (vMan.time_Hour > 14) && (vMan.dead == 3):
+			current_lines = lines2
+		elif (vMan.time_Hour > 14) && (vMan.dead == 5):
+			current_lines = lines3
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") && !DialogueManager.is_dialogue_active && playerInArea:
-		DialogueManager.show_text(lines)
+		DialogueManager.show_text(current_lines)
 
 
 func _on_area_2d_body_entered(_body: Node2D) -> void:
