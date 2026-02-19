@@ -4,7 +4,7 @@ extends Node
 const TEXTBOX = preload("res://scritps/DialogRPGStyle/textbox.tscn")
 
 var is_dialogue_active = false
-var vMan:Node # Variablen Manager
+var vMan # Variablen Manager
 ## Übergebenen Text in einer Textbox ausgeben.
 func show_text(lines: Array[String]):
 	
@@ -25,6 +25,7 @@ func show_text(lines: Array[String]):
 	# Aktivität des Dialogs vermerken
 	is_dialogue_active = true
 	if vMan:
+		print("Ben")
 		vMan.text_active = is_dialogue_active
 	# Verbeinden des "tree_exited" Signal, um zu wissen, wann die Box weg ist
 	textbox_instance.tree_exited.connect(_on_textbox_closed)

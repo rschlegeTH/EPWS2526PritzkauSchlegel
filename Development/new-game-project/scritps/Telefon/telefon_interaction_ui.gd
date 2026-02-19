@@ -2,8 +2,10 @@ extends Node2D
 
 var playerInArea: bool = false
 var callAvailable: bool = false
-@onready var ui = $"Telefon/Area2D/TelefonInteractionUI"
+@onready var ui := $"Telefon/Area2D/TelefonInteractionUI"
 @export var vMan : Node
+
+@onready var ring1 := $Ring1
 
 ## Eine Array-Zelle beschreibt eine Textbox.
 @export_multiline var lines: Array[String] = [
@@ -34,18 +36,34 @@ var current_call : int = 0
 
 func _process(_delta: float) -> void:
 	if vMan:
-		if (vMan.time_Hour > 14) && (vMan.dead == 1):
+		if (vMan.time_Hour > 8) && (vMan.dead == 1) && (callAvailable == false) && current_call == 0:
+			print(vMan.time_Hour + vMan.dead)
+			current_call = 1
 			current_lines = lines
-		elif (vMan.time_Hour > 14) && (vMan.dead == 3):
+			callAvailable = true
+			ring1.toggle(true)
+		elif (vMan.time_Hour > 8) && (vMan.dead == 2) && (callAvailable == false) && current_call == 2:
 			current_lines = lines2
-		elif (vMan.time_Hour > 14) && (vMan.dead == 5):
+			callAvailable = true
+			ring1.toggle(true)
+		elif (vMan.time_Hour > 8) && (vMan.dead == 4) && (callAvailable == false) && current_call == 3:
 			current_lines = lines3
+			callAvailable = true
+			ring1.toggle(true)
+
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") && !DialogueManager.is_dialogue_active && playerInArea:
 		DialogueManager.show_text(current_lines)
+		if(current_call < 4 && callAvailable):
+			_next_dialogue()
+		callAvailable = false
+		ring1.toggle(false)
 
+func _next_dialogue():
+	current_call = current_call + 1
+	current_lines = [""]
 
 func _on_area_2d_body_entered(_body: Node2D) -> void:
 	playerInArea = true

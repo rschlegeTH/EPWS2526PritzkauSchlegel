@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c7phnqg17lak8"]
+[gd_scene load_steps=6 format=3 uid="uid://c7phnqg17lak8"]
 
 [ext_resource type="Script" uid="uid://dfhcgjmjjamxh" path="res://scritps/Telefon/telefon_interaction_ui.gd" id="1_qinj5"]
+[ext_resource type="PackedScene" uid="uid://solg1nieiklo" path="res://scritps/Tooltip/tooltip.tscn" id="2_5gr4t"]
 [ext_resource type="Texture2D" uid="uid://cle8j6tdmqdm5" path="res://Sprites/Phone.png" id="2_qinj5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhs0p"]
@@ -12,6 +13,14 @@ size = Vector2(47.999924, 56)
 [node name="Telefon" type="Node2D"]
 z_index = 2
 script = ExtResource("1_qinj5")
+
+[node name="Ring1" parent="." instance=ExtResource("2_5gr4t")]
+offset_left = 184.0
+offset_top = -48.0
+offset_right = -912.0
+offset_bottom = -688.0
+mouse_mode = false
+text = "*Ring*"
 
 [node name="Telefon" type="StaticBody2D" parent="."]
 z_index = 2

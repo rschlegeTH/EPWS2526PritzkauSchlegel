@@ -1,5 +1,7 @@
 @tool
+class_name VariableManager
 extends Node
+
 #Hauptparameter
 @export_range(0, 100) var gesundheit: float = 100 ## Gesundheitsvariable. Standard ist 100.
 @export_range(0, 100) var stress: float = 0 ## Stressvariable. Standard ist 0.
