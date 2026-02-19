@@ -96,7 +96,7 @@ func workButton () -> void:
 func sleepButton () -> void:
 	if(dead >= DEADLINE):
 		return
-	if(ticksSinceSleep < 48):
+	if(ticksSinceSleep < 96):
 		print("not tired yet")
 		DialogueManager.show_text(["Ich bin noch nicht müde."])
 		return
@@ -109,7 +109,7 @@ func gameButton () -> void:
 	playGame()
 
 ## Erhöht den Arbeitsfortschritt um die investierte Zeit und verbraucht die investierte Zeit.
-func work(time_spent:int = 4, standardIncrease: float = 2) -> void: # standardIncrease beschreibt wie viel prozent Arbeit der Spieler pro Stunde schafft
+func work(time_spent:int = 2, standardIncrease: float = 2) -> void: # standardIncrease beschreibt wie viel prozent Arbeit der Spieler pro Stunde schafft
 	@warning_ignore("narrowing_conversion") addCompletion(time_spent * standardIncrease)
 	@warning_ignore("integer_division") increase_Time(floor(time_spent * 60 / MINUTETICK))
 	addStress(time_spent * standardIncrease)
@@ -127,7 +127,7 @@ func sleep(time_spent:int = 8, standardIncrease: float = 10 ) -> void:
 	
 
 ## Wird bei drücken des "Play"-Buttons ausgeführt.
-func playGame(time_spent: int=2, standardIncrease: float = 4 ) -> void:
+func playGame(time_spent: int=1, standardIncrease: float = 4 ) -> void:
 	@warning_ignore("integer_division") increase_Time(floor(time_spent * 60 / MINUTETICK))
 	addStress(-(time_spent * standardIncrease))
 
