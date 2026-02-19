@@ -306,7 +306,7 @@ scale = Vector2(0.24224946, 0.61317354)
 texture = ExtResource("9_cri2g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room/Arbeitsplatz"]
-position = Vector2(16.816483, 5.1097717)
+position = Vector2(5.481, 5.11)
 scale = Vector2(0.9999999, 0.99999964)
 shape = SubResource("RectangleShape2D_4lggk")
 
@@ -323,7 +323,7 @@ shape = SubResource("RectangleShape2D_3ukrw")
 [node name="Area2D" type="Area2D" parent="Room/Arbeitsplatz"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room/Arbeitsplatz/Area2D"]
-position = Vector2(16.141796, -111.39314)
+position = Vector2(9.302, -111.393)
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_hehhx")
 
