@@ -9,6 +9,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if (temp.calcEnding() <= 1):
-		$".".text = "You didn't finish all your work for the deadline!"
+		$".".text = "Du hast nicht all deine Aufgaben innerhalb der Deadline erfüllt!"
 		return
-	$".".text = "You managed to finish all your work for the deadline!"
+	$".".text = "Du hast all deine Aufgaben innerhalb der Deadline erfüllt!"

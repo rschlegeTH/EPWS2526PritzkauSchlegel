@@ -9,6 +9,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if (vMan.calcEnding() <= 1):
-		$".".text = "You Lost!"
+		$".".text = "Du hast es nicht geschafft!"
 		return
-	$".".text = "You Won!!"
+	$".".text = "Du hast es geschafft!!"

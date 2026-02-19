@@ -7,4 +7,4 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	$".".text = str(vMan.DEADLINE - vMan.dead) # Schreib den wert von dead auf das Lable
+	$".".text = str(vMan.DEADLINE - vMan.dead - 1) # Schreib den wert von dead auf das Lable
