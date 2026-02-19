@@ -30,6 +30,11 @@ var debug_mode := false
 @export_range(0, 288) var ticksSinceSleep: int = 0 ## Die vergangenen Ticks, seit der letzten Nutzung des Schlafbuttons.
 #ALT Sonstige Variablen
 var interactionObject: int = 0
+var text_active:= false
+
+func _ready() -> void:
+	DialogueManager.vMan = self
+
 # Anpassen, weil g_mod < 1 und clamp immer auf 1 setzt
 ## Führt die Kalkulation des Gesundheitswertes aus.
 func calcGes() -> void:
@@ -124,6 +129,8 @@ func playGame(time_spent: int=2, standardIncrease: float = 4 ) -> void:
 
 ## Uhrzeit erhöhen um einen bestimmten Stundend-Wert, sollte keine Wert übergeben werden oder der Wert 0 sein, wird die Zeit um 5 min erhöht.
 func increase_Time(time_Inc:int = 0) -> void:
+	if(text_active):
+		return
 	totalGameTicks = totalGameTicks + time_Inc
 	var totalMinutes: int = totalGameTicks * MINUTETICK
 	@warning_ignore("integer_division") var totalHours: int = floor(totalMinutes / 60) # 60 = dauer einer Stunde in Minuten

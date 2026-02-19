@@ -2,7 +2,7 @@ extends Node2D
 
 var playerInArea: bool = false
 var callAvailable: bool = false
-@onready var ui = $"Arbeitsplatz2/Area2D/TelefonInteractionUI"
+@onready var ui = $"Telefon/Area2D/TelefonInteractionUI"
 
 ## Eine Array-Zelle beschreibt eine Textbox.
 @export_multiline var lines: Array[String] = [

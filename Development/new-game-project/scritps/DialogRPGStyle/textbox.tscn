@@ -10,6 +10,7 @@ border_width_right = 4
 border_width_bottom = 4
 
 [sub_resource type="SystemFont" id="SystemFont_mytm0"]
+subpixel_positioning = 0
 
 [node name="Textbox" type="CanvasLayer"]
 script = ExtResource("1_mytm0")
@@ -62,7 +63,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 theme_override_fonts/font = SubResource("SystemFont_mytm0")
 theme_override_font_sizes/font_size = 32
-text = "Platzhalter von Ben Ben BEnNNNNNNNN BEn BEnnnnnnnnnnnnnnnn BENNNNNNNNNNNNNNNN Bfsdf"
+text = "Platzhalter Text"
 autowrap_mode = 3
 
 [node name="End" type="Label" parent="TextboxContainer/MarginContainer/HBoxContainer"]

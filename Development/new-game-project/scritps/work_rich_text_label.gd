@@ -1,7 +1,7 @@
 extends RichTextLabel
 
-var work_effect:WorkEffect
-@onready var vMan = %"Variablen-Manager"
+var work_effect : WorkEffect
+@onready var vMan := %"Variablen-Manager"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	work_effect = WorkEffect.new()
@@ -9,11 +9,11 @@ func _ready() -> void:
 	install_effect(work_effect)
 
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
+func _on_work_area_2d_body_entered(body: Node2D) -> void:
 	$".".show()
 	vMan.interactionObject = 3
 
 
-func _on_area_2d_body_exited(body: Node2D) -> void:
+func _on_work_area_2d_body_exited(body: Node2D) -> void:
 	$".".hide()
 	vMan.interactionObject = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://txamr71ux6xl"]
+[gd_scene load_steps=61 format=3 uid="uid://txamr71ux6xl"]
 
 [ext_resource type="PackedScene" uid="uid://001sx3h20shs" path="res://variablen_manager.tscn" id="1_l7cbk"]
 [ext_resource type="Shader" uid="uid://mbwuvm5tynd7" path="res://shader/low_productivity.gdshader" id="2_imkwa"]
@@ -29,11 +29,17 @@
 [ext_resource type="Texture2D" uid="uid://b16syya0jtmnf" path="res://Sprites/Chair.png" id="12_78hxn"]
 [ext_resource type="Script" uid="uid://ww5lfs3q7ag7" path="res://scritps/RoomUI/stress_progress_bar.gd" id="12_l7cbk"]
 [ext_resource type="Script" uid="uid://4kvqfpelv0xf" path="res://scritps/endscreen.gd" id="13_qvx3r"]
+[ext_resource type="Texture2D" uid="uid://bk3cak3bprttw" path="res://Sprites/Character max stressed.png" id="13_them1"]
 [ext_resource type="Script" uid="uid://cboeeqahucrb3" path="res://scritps/win_or_lose.gd" id="14_78hxn"]
+[ext_resource type="Texture2D" uid="uid://clwdmqq5iv2vg" path="res://Sprites/Character max tired.png" id="14_k18p7"]
 [ext_resource type="Script" uid="uid://cbkp11y6ficih" path="res://scritps/win_or_lose_disc.gd" id="15_jo7i1"]
+[ext_resource type="Texture2D" uid="uid://d270dvqbyq76l" path="res://Sprites/Character max tired and max stressed.png" id="15_s2nlt"]
+[ext_resource type="Texture2D" uid="uid://c117x8gsjcs2o" path="res://Sprites/Character max tired and stressed.png" id="16_eo7ub"]
 [ext_resource type="Texture2D" uid="uid://dfb6o1eo4e23j" path="res://icon.svg" id="16_v0yip"]
+[ext_resource type="Texture2D" uid="uid://u5bm3r7scp80" path="res://Sprites/Character tired and max stressed.png" id="19_4vog7"]
 [ext_resource type="PackedScene" uid="uid://solg1nieiklo" path="res://scritps/Tooltip/tooltip.tscn" id="20_78hxn"]
 [ext_resource type="Script" uid="uid://pi2ooeptgdgq" path="res://scritps/Tooltip/tooltip_interact.gd" id="23_jo7i1"]
+[ext_resource type="PackedScene" uid="uid://c7phnqg17lak8" path="res://scritps/Telefon/telefon.tscn" id="30_bddpn"]
 
 [sub_resource type="Curve" id="Curve_7ycvg"]
 _data = [Vector2(0.3032787, 0.50075305), 0.0, 0.68272454, 0, 0, Vector2(1, 1), 0.7165662, 0.0, 1, 0]
@@ -89,6 +95,38 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("13_them1")
+}],
+"loop": true,
+"name": &"max stressed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_k18p7")
+}],
+"loop": true,
+"name": &"max tired",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_s2nlt")
+}],
+"loop": true,
+"name": &"max tired and max stressed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_eo7ub")
+}],
+"loop": true,
+"name": &"max tired and stressed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("4_fgg7d")
 }],
 "loop": true,
@@ -101,6 +139,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"tired",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_4vog7")
+}],
+"loop": true,
+"name": &"tired and max stressed",
 "speed": 5.0
 }, {
 "frames": [{
@@ -126,6 +172,9 @@ size = Vector2(102.31918, 118.546906)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ukrw"]
 size = Vector2(33.115784, 166.57889)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_them1"]
+size = Vector2(103.66856, 53.14499)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uvgfp"]
 distance = -66.44444
@@ -194,6 +243,8 @@ script = ExtResource("7_gvlgq")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 z_index = 1
+collision_layer = 9
+collision_mask = 9
 script = ExtResource("2_uvgfp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
@@ -205,6 +256,7 @@ shape = SubResource("CircleShape2D_vl18p")
 position = Vector2(-0.49999624, -60.095)
 scale = Vector2(0.326, 0.298)
 sprite_frames = SubResource("SpriteFrames_jo7i1")
+animation = &"tired"
 autoplay = "default"
 
 [node name="Room" type="Node2D" parent="."]
@@ -320,14 +372,15 @@ position = Vector2(65.23352, -20.439123)
 scale = Vector2(0.9999999, 0.9999997)
 shape = SubResource("RectangleShape2D_3ukrw")
 
-[node name="Area2D" type="Area2D" parent="Room/Arbeitsplatz"]
+[node name="Area2DWork" type="Area2D" parent="Room/Arbeitsplatz"]
+collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Room/Arbeitsplatz/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room/Arbeitsplatz/Area2DWork"]
 position = Vector2(9.302, -111.393)
 scale = Vector2(0.99999994, 0.99999994)
-shape = SubResource("RectangleShape2D_hehhx")
+shape = SubResource("RectangleShape2D_them1")
 
-[node name="WorkRichTextLabel" type="RichTextLabel" parent="Room/Arbeitsplatz/Area2D"]
+[node name="WorkRichTextLabel" type="RichTextLabel" parent="Room/Arbeitsplatz/Area2DWork"]
 visible = false
 offset_left = -64.63054
 offset_top = -69.493004
@@ -335,7 +388,7 @@ offset_right = 63.684723
 offset_bottom = 64.38323
 mouse_filter = 1
 bbcode_enabled = true
-text = "[workEffect]Work[/workEffect]"
+text = "[E][workEffect]Work[/workEffect]"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("3_uvgfp")
@@ -384,6 +437,10 @@ z_index = -1
 position = Vector2(-3.3829534, -1.2889504e-06)
 scale = Vector2(0.08537611, 0.118518524)
 texture = ExtResource("11_fgg7d")
+
+[node name="Telefon" parent="Room" instance=ExtResource("30_bddpn")]
+position = Vector2(41.907227, -20.938272)
+scale = Vector2(0.33139157, 0.4740741)
 
 [node name="Lables" type="Control" parent="."]
 layout_mode = 3
@@ -572,5 +629,5 @@ script = ExtResource("15_jo7i1")
 [connection signal="body_exited" from="Room/Bett/BettArea2D" to="Room/Bett/BettArea2D/SleepRichTextLabel" method="_on_bett_area_2d_body_exited"]
 [connection signal="body_entered" from="Room/Konsole/Area2D" to="Room/Konsole/Area2D/PlayRichTextLabel" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Room/Konsole/Area2D" to="Room/Konsole/Area2D/PlayRichTextLabel" method="_on_area_2d_body_exited"]
-[connection signal="body_entered" from="Room/Arbeitsplatz/Area2D" to="Room/Arbeitsplatz/Area2D/WorkRichTextLabel" method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Room/Arbeitsplatz/Area2D" to="Room/Arbeitsplatz/Area2D/WorkRichTextLabel" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Room/Arbeitsplatz/Area2DWork" to="Room/Arbeitsplatz/Area2DWork/WorkRichTextLabel" method="_on_work_area_2d_body_entered"]
+[connection signal="body_exited" from="Room/Arbeitsplatz/Area2DWork" to="Room/Arbeitsplatz/Area2DWork/WorkRichTextLabel" method="_on_work_area_2d_body_exited"]
