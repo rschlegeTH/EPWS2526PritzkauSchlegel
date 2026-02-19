@@ -109,11 +109,9 @@ func gameButton () -> void:
 	playGame()
 
 ## Erhöht den Arbeitsfortschritt um die investierte Zeit und verbraucht die investierte Zeit.
-func work(time_spent:int = 2, standardIncrease: float = 2) -> void: # standardIncrease beschreibt wie viel prozent Arbeit der Spieler pro Stunde schafft
 func work(time_spent:int = 2, standardIncrease: float = 1.8) -> void: # standardIncrease beschreibt wie viel prozent Arbeit der Spieler pro Stunde schafft
 	@warning_ignore("narrowing_conversion") addCompletion(time_spent * standardIncrease)
 	@warning_ignore("integer_division") increase_Time(floor(time_spent * 60 / MINUTETICK))
-	addStress(time_spent * standardIncrease)
 	addStress(time_spent * 2.0)
 
 ## Schlafen, erhöht Gesundheitswert abhängig von der verbrauchten Zeit und verringert die Zeit um time_spent. standardIncrease beschreibt den Gesundheitsgewinn pro Stunde.
